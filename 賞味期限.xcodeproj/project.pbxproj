@@ -14,6 +14,7 @@
 		D28392271A864E250035094C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D28392261A864E250035094C /* Images.xcassets */; };
 		D283922A1A864E250035094C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28392281A864E250035094C /* LaunchScreen.xib */; };
 		D28392361A864E250035094C /* ____Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D28392351A864E250035094C /* ____Tests.m */; };
+		D28392411A864F860035094C /* TOUROKU.m in Sources */ = {isa = PBXBuildFile; fileRef = D28392401A864F860035094C /* TOUROKU.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		D283922F1A864E250035094C /* 賞味期限Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "賞味期限Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D28392341A864E250035094C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D28392351A864E250035094C /* ____Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "____Tests.m"; sourceTree = "<group>"; };
+		D283923F1A864F860035094C /* TOUROKU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOUROKU.h; sourceTree = "<group>"; };
+		D28392401A864F860035094C /* TOUROKU.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOUROKU.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +89,8 @@
 				D28392201A864E250035094C /* ViewController.h */,
 				D28392211A864E250035094C /* ViewController.m */,
 				D28392231A864E250035094C /* Main.storyboard */,
+				D283923F1A864F860035094C /* TOUROKU.h */,
+				D28392401A864F860035094C /* TOUROKU.m */,
 				D28392261A864E250035094C /* Images.xcassets */,
 				D28392281A864E250035094C /* LaunchScreen.xib */,
 				D28392191A864E250035094C /* Supporting Files */,
@@ -220,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D28392221A864E250035094C /* ViewController.m in Sources */,
+				D28392411A864F860035094C /* TOUROKU.m in Sources */,
 				D283921F1A864E250035094C /* AppDelegate.m in Sources */,
 				D283921C1A864E250035094C /* main.m in Sources */,
 			);
