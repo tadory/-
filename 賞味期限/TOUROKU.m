@@ -18,12 +18,40 @@
     texta.textAlignment=UITextAlignmentLeft;
     texta.placeholder=@"品名を入力してください";
     texta.clearButtonMode=UITextFieldViewModeAlways;
-    [texta addTarget:self action:@selecter(HINMEI) forControlEvents:UIControlEventEditingDidEndOnExit];
+    [texta addTarget:self action:@selector(HINMEI:) forControlEvents:UIControlEventEditingDidEndOnExit];
     [self.view addSubview:texta];
+    
+    UITextField  *textb = [[UITextField alloc] initWithFrame:CGRectMake(56, 128, 208, 30)];
+    textb.borderStyle =UITextBorderStyleRoundedRect;
+    textb.KeyboardType=UIKeyboardTypeDefault;
+    textb.textAlignment=UITextAlignmentLeft;
+    textb.placeholder=@"品数を入力してください";
+    textb.clearButtonMode=UITextFieldViewModeAlways;
+    [textb addTarget:self action:@selector(HINSUU:) forControlEvents:UIControlEventEditingDidEndOnExit];
+    [self.view addSubview:textb];
+    
+    UITextField  *textc = [[UITextField alloc] initWithFrame:CGRectMake(56, 194, 208, 30)];
+    textc.borderStyle =UITextBorderStyleRoundedRect;
+    textc.KeyboardType=UIKeyboardTypeDefault;
+    textc.textAlignment=UITextAlignmentLeft;
+    textc.placeholder=@"品数を入力してください";
+    textc.clearButtonMode=UITextFieldViewModeAlways;
+    [textc addTarget:self action:@selector(BASYO:) forControlEvents:UIControlEventEditingDidEndOnExit];
+    [self.view addSubview:textc];
+
+
 }
 
 -(void)HINMEI{
-    NSUserDefaults*hinmei =[NSUserDefaults standardUserDefaults];
+    NSUserDefaults*HINMEI =[NSUserDefaults standardUserDefaults];
+    
+}
+
+-(void)HINSUU{
+    
+}
+
+-(void)BASYO{
     
 }
 
