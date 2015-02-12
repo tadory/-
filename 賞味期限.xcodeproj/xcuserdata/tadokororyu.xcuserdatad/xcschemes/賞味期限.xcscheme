@@ -81,6 +81,12 @@
             ReferencedContainer = "container:&#x8cde;&#x5473;&#x671f;&#x9650;.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "&#x8cde;&#x5473;&#x671f;&#x9650;(ja)"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

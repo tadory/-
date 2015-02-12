@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TOUROKU : UIViewController
+@interface TOUROKU : UIViewController{
+    UITextField *texta;
+    UITextField *textb;
+    UITextField *textc;
+    
+    UIDatePicker *Datepicker;
+}
 
 @end
