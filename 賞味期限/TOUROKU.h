@@ -9,11 +9,19 @@
 #import <UIKit/UIKit.h>
 
 @interface TOUROKU : UIViewController{
+    int i;
+    
     UITextField *texta;
     UITextField *textb;
     UITextField *textc;
     
+    NSMutableArray *hinmeiarray;
+    NSMutableArray *hinsuuarray;
+    NSMutableArray *basyoarray;
+    NSMutableArray *kigenarray;
+    
     UIDatePicker *Datepicker;
 }
+
 
 @end
