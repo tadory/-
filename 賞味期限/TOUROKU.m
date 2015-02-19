@@ -7,77 +7,96 @@
 //
 
 #import "TOUROKU.h"
+#import "Item.h"
 
 @implementation TOUROKU
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    texta_i=false;
+    textb_i=false;
+    textc_i=false;
+    kigen_i=false;
+    
     texta = [[UITextField alloc] initWithFrame:CGRectMake(56, 65, 208, 30)];
     texta.borderStyle =UITextBorderStyleRoundedRect;
     texta.KeyboardType=UIKeyboardTypeDefault;
-    texta.textAlignment=UITextAlignmentLeft;
     texta.placeholder=@"品名";
-    texta.clearButtonMode=UITextFieldViewModeAlways;
-    [texta addTarget:self action:@selector(HINMEI:) forControlEvents:UIControlEventEditingDidEndOnExit];
+    texta.delegate = self;
+    
+        texta.clearButtonMode=UITextFieldViewModeAlways;
+//    [texta addTarget:self action:@selector(HINMEI) forControlEvents:UIControlEventEditingDidEndOnExit];
     [texta becomeFirstResponder];
     [self.view addSubview:texta];
     
     textb = [[UITextField alloc] initWithFrame:CGRectMake(56, 128, 208, 30)];
     textb.borderStyle =UITextBorderStyleRoundedRect;
     textb.KeyboardType=UIKeyboardTypeDefault;
-    textb.textAlignment=UITextAlignmentLeft;
     textb.placeholder=@"品数";
+    textb.delegate = self;
     textb.clearButtonMode=UITextFieldViewModeAlways;
-    [textb addTarget:self action:@selector(HINSUU:) forControlEvents:UIControlEventEditingDidEndOnExit];
+//    [textb addTarget:self action:@selector(HINSUU) forControlEvents:UIControlEventEditingDidEndOnExit];
     [textb becomeFirstResponder];
     [self.view addSubview:textb];
     
     textc = [[UITextField alloc] initWithFrame:CGRectMake(56, 194, 208, 30)];
     textc.borderStyle =UITextBorderStyleRoundedRect;
     textc.KeyboardType=UIKeyboardTypeDefault;
-    textc.textAlignment=UITextAlignmentLeft;
     textc.placeholder=@"場所";
+    textc.delegate = self;
+
     textc.clearButtonMode=UITextFieldViewModeAlways;
-    [textc addTarget:self action:@selector(BASYO:) forControlEvents:UIControlEventEditingDidEndOnExit];
+//    [textc addTarget:self action:@selector(BASYO) forControlEvents:UIControlEventEditingDidEndOnExit];
     [textc becomeFirstResponder];
     [self.view addSubview:textc];
+    //NSArray *BasyoArray =[NSArray arrayWithObjects:@"",@"",];
     
-    Datepicker =[[UIDatePicker alloc]initWithFrame:CGRectMake(15, 250, 289, 120)];
-    Datepicker.datePickerMode=UIDatePickerModeDate;
-    Datepicker.minimumDate = [NSDate date];
-    Datepicker.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"ja_JP"];
-    [Datepicker addTarget:self action:@selector(datepicker) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:Datepicker];
     
-    UIButton *buttona = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    datepicker =[[UIDatePicker alloc]initWithFrame:CGRectMake(15, 250, 289, 120)];
+    datepicker.datePickerMode=UIDatePickerModeDate;
+    datepicker.minimumDate = [NSDate date];
+    datepicker.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"ja_JP"];
+    [datepicker addTarget:self action:@selector(datepicker:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:datepicker];
+    
+    buttona = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     buttona.frame =CGRectMake(103, 462, 115, 49);
     [buttona setTitle:@"登録" forState:UIControlStateNormal];
     [buttona addTarget:self action:@selector(buttona) forControlEvents:UIControlEventTouchUpInside];
-   
     
-    hinmeiarray =[NSMutableArray array];
-    hinsuuarray =[NSMutableArray array];
-    basyoarray =[NSMutableArray array];
-    kigenarray =[NSMutableArray array];
+//    NSData* classDataSave = [NSKeyedArchiver archivedDataWithRootObject:[[NSMutableArray alloc] init]];
+//    [[NSUserDefaults standardUserDefaults] setObject:classDataSave forKey:@"ItemArray"];
     
-    
-}
-
--(void)HINMEI{
+//    hinmeiarray =[NSMutableArray array];
+//    hinsuuarray =[NSMutableArray array];
+//    basyoarray =[NSMutableArray array];
+//    kigenarray =[NSMutableArray array];
     
     
 }
 
--(void)HINSUU{
-    
+//-(void)HINMEI{
+//    texta_i=true;
+//}
+//
+//-(void)HINSUU{
+//    textb_i=true;
+//}
+//
+//-(void)BASYO{
+//    textc_i=true;
+//}
+-(void)datepicker:(UIDatePicker* )picker {
+    kigen_i=true;
+    [self shouldShowButtonA];
 }
 
--(void)BASYO{
-    
+- (void)shouldShowButtonA {
+    if (kigen_i && texta_i && textb_i && textc_i) {
+        [self.view addSubview:buttona];
+    }
 }
--(void)datepicker{
-    
-}
+
 -(void)buttona{
 //    NSUserDefaults *hinmei =[NSUserDefaults standardUserDefaults];
 //    [hinmei setObject:texta.text forKey:@"hinmei"];
@@ -92,29 +111,90 @@
 //    NSUserDefaults*datepicker =[NSUserDefaults standardUserDefaults];
 //    [datepicker setObject:Date forKey:@"datepicker"];
     
-    [hinmeiarray addObject:texta.text];
-    [hinsuuarray addObject:textb.text];
-    [basyoarray addObject:textc];
-    NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy年 M月 d日"];
-    NSString *Date =[formatter stringFromDate:Datepicker.date];
-    [kigenarray addObject:Date];
+    Item *item = [[Item alloc] initWithCoder:nil];
+    item.name = texta.text;
+    item.count = [textb.text integerValue];
+    item.basyo = textc.text;
+    item.limitDate = datepicker.date;
     
-    NSUserDefaults *hinmei =[NSUserDefaults standardUserDefaults];
-    [hinmei setObject:hinmeiarray forKey:@"hinmei"];
+    NSLog(@"item to be added %@", item.debugDescription);
     
-    NSUserDefaults *hinsuu =[NSUserDefaults standardUserDefaults];
-    [hinsuu setObject:hinsuuarray forKey:@"hinsuu"];
+    // 取得
+    NSData* classDataLoad = [[NSUserDefaults standardUserDefaults]  dataForKey:@"ItemArray"];
+    NSMutableArray *itemArray = [[NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad] mutableCopy];
     
-    NSUserDefaults *basyo=[NSUserDefaults standardUserDefaults];
-    [basyo setObject:basyoarray forKey:@"basyo"];
+    if (itemArray == nil && itemArray.count == 0) {
+        itemArray = [[NSMutableArray alloc] init];
+    }
     
-    NSUserDefaults *kigen=[NSUserDefaults standardUserDefaults];
-    [kigen setObject:kigenarray forKey:@"kigen"];
+    [itemArray addObject:item];
+    
+    NSLog(@"new array %@", itemArray);
+    
+    // 保存
+    NSData* classDataSave = [NSKeyedArchiver archivedDataWithRootObject:itemArray];
+    [[NSUserDefaults standardUserDefaults] setObject:classDataSave forKey:@"ItemArray"];
+    
+//    [hinmeiarray addObject:texta.text];
+//    [hinsuuarray addObject:textb.text];
+//    [basyoarray addObject:textc];
+    
+//    NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
+//    [formatter setDateFormat:@"yyyy年 M月 d日"];
+//    NSString *Date =[formatter stringFromDate:Datepicker.date];
+//    [kigenarray addObject:Date];
+//    
+//    NSUserDefaults *hinmei =[NSUserDefaults standardUserDefaults];
+//    [hinmei setObject:hinmeiarray forKey:@"hinmei"];
+//    
+//    NSUserDefaults *hinsuu =[NSUserDefaults standardUserDefaults];
+//    [hinsuu setObject:hinsuuarray forKey:@"hinsuu"];
+//    
+//    NSUserDefaults *basyo=[NSUserDefaults standardUserDefaults];
+//    [basyo setObject:basyoarray forKey:@"basyo"];
+//    
+//    NSUserDefaults *kigen=[NSUserDefaults standardUserDefaults];
+//    [kigen setObject:kigenarray forKey:@"kigen"];
     
     
-    UIAlertView *alert =[[UIAlertView alloc] init];
     
+    UIAlertView *alert =[[UIAlertView alloc] initWithTitle:@"message" message:@"texta.text,textb.text,textc.text,Dateで設定しました" delegate:nil cancelButtonTitle:@"完了"otherButtonTitles:nil, nil];
+    [alert show];
+    
+    [texta setText:@""];
+    [textb setText:@""];
+    [textc setText:@""];
+    
+    texta_i=false;
+    textb_i=false;
+    textc_i=false;
+    kigen_i=false;
+    
+   // buttona.hidden = YES;
+
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == texta) {
+        texta_i = YES;
+    } else if (textField == textb) {
+        textb_i = YES;
+    } else  {
+        textc_i = YES;
+    }
+    
+    [textField resignFirstResponder];
+    return YES;
+    
+    [texta setText:@""];
+    [textb setText:@""];
+    [textc setText:@""];
+    [datepicker setDate:[NSDate date]];
+    
+    texta_i=false;
+    textb_i=false;
+    textc_i=false;
+    kigen_i=false;
 }
 
 

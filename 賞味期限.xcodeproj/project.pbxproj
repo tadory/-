@@ -15,6 +15,8 @@
 		D283922A1A864E250035094C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28392281A864E250035094C /* LaunchScreen.xib */; };
 		D28392361A864E250035094C /* ____Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D28392351A864E250035094C /* ____Tests.m */; };
 		D28392411A864F860035094C /* TOUROKU.m in Sources */ = {isa = PBXBuildFile; fileRef = D28392401A864F860035094C /* TOUROKU.m */; };
+		D2846C001A95CDA7001134D4 /* ZAIKO.m in Sources */ = {isa = PBXBuildFile; fileRef = D2846BFF1A95CDA7001134D4 /* ZAIKO.m */; };
+		D2846C031A95E6E3001134D4 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = D2846C021A95E6E3001134D4 /* Item.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,10 @@
 		D28392351A864E250035094C /* ____Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "____Tests.m"; sourceTree = "<group>"; };
 		D283923F1A864F860035094C /* TOUROKU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOUROKU.h; sourceTree = "<group>"; };
 		D28392401A864F860035094C /* TOUROKU.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOUROKU.m; sourceTree = "<group>"; };
+		D2846BFE1A95CDA7001134D4 /* ZAIKO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAIKO.h; sourceTree = "<group>"; };
+		D2846BFF1A95CDA7001134D4 /* ZAIKO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZAIKO.m; sourceTree = "<group>"; };
+		D2846C011A95E6E3001134D4 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		D2846C021A95E6E3001134D4 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +97,10 @@
 				D28392231A864E250035094C /* Main.storyboard */,
 				D283923F1A864F860035094C /* TOUROKU.h */,
 				D28392401A864F860035094C /* TOUROKU.m */,
+				D2846C011A95E6E3001134D4 /* Item.h */,
+				D2846C021A95E6E3001134D4 /* Item.m */,
+				D2846BFE1A95CDA7001134D4 /* ZAIKO.h */,
+				D2846BFF1A95CDA7001134D4 /* ZAIKO.m */,
 				D28392261A864E250035094C /* Images.xcassets */,
 				D28392281A864E250035094C /* LaunchScreen.xib */,
 				D28392191A864E250035094C /* Supporting Files */,
@@ -224,6 +234,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2846C031A95E6E3001134D4 /* Item.m in Sources */,
+				D2846C001A95CDA7001134D4 /* ZAIKO.m in Sources */,
 				D28392221A864E250035094C /* ViewController.m in Sources */,
 				D28392411A864F860035094C /* TOUROKU.m in Sources */,
 				D283921F1A864E250035094C /* AppDelegate.m in Sources */,
@@ -418,6 +430,7 @@
 				D283923B1A864E250035094C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D283923C1A864E250035094C /* Build configuration list for PBXNativeTarget "賞味期限Tests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +439,7 @@
 				D283923E1A864E250035094C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

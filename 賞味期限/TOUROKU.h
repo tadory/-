@@ -8,20 +8,27 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TOUROKU : UIViewController{
+@interface TOUROKU : UIViewController <UITextFieldDelegate> {
     int i;
+    BOOL texta_i;
+    BOOL textb_i;
+    BOOL textc_i;
+    BOOL kigen_i;
     
     UITextField *texta;
     UITextField *textb;
     UITextField *textc;
     
-    NSMutableArray *hinmeiarray;
-    NSMutableArray *hinsuuarray;
-    NSMutableArray *basyoarray;
-    NSMutableArray *kigenarray;
+    UIButton *buttona;
     
-    UIDatePicker *Datepicker;
+//    NSMutableArray *hinmeiarray;
+//    NSMutableArray *hinsuuarray;
+//    NSMutableArray *basyoarray;
+//    NSMutableArray *kigenarray;
+    
+    UIDatePicker *datepicker;
 }
+-(IBAction)buttona;
 
 
 @end
