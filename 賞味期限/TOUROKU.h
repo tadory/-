@@ -17,7 +17,8 @@
     
     UITextField *texta;
     UITextField *textb;
-    UITextField *textc;
+    //UITextField *textc;
+    UISegmentedControl *textc;
     
     UIButton *buttona;
     

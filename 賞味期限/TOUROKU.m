@@ -39,17 +39,24 @@
     [textb becomeFirstResponder];
     [self.view addSubview:textb];
     
-    textc = [[UITextField alloc] initWithFrame:CGRectMake(56, 194, 208, 30)];
-    textc.borderStyle =UITextBorderStyleRoundedRect;
-    textc.KeyboardType=UIKeyboardTypeDefault;
-    textc.placeholder=@"場所";
-    textc.delegate = self;
-
-    textc.clearButtonMode=UITextFieldViewModeAlways;
-//    [textc addTarget:self action:@selector(BASYO) forControlEvents:UIControlEventEditingDidEndOnExit];
-    [textc becomeFirstResponder];
+//    textc = [[UITextField alloc] initWithFrame:CGRectMake(56, 194, 208, 30)];
+//    textc.borderStyle =UITextBorderStyleRoundedRect;
+//    textc.KeyboardType=UIKeyboardTypeDefault;
+//    textc.placeholder=@"場所";
+//    textc.delegate = self;
+//
+//    textc.clearButtonMode=UITextFieldViewModeAlways;
+////    [textc addTarget:self action:@selector(BASYO) forControlEvents:UIControlEventEditingDidEndOnExit];
+//    [textc becomeFirstResponder];
+//    [self.view addSubview:textc];
+    NSArray *BasyoArray =[NSArray arrayWithObjects:@"冷蔵庫",@"棚",@"その他",nil];
+    textc=[[UISegmentedControl alloc]initWithItems:BasyoArray];
+    textc.frame=CGRectMake(56,194,208,30);
+    textc.segmentedControlStyle=UISegmentedControlStylePlain;
+    textc.selectedSegmentIndex=0;
+    [textc addTarget:self action:@selector(BASYO) forControlEvents:UIControlEventEditingDidEndOnExit];
     [self.view addSubview:textc];
-    //NSArray *BasyoArray =[NSArray arrayWithObjects:@"",@"",];
+    
     
     
     datepicker =[[UIDatePicker alloc]initWithFrame:CGRectMake(15, 250, 289, 120)];
@@ -63,6 +70,9 @@
     buttona.frame =CGRectMake(103, 462, 115, 49);
     [buttona setTitle:@"登録" forState:UIControlStateNormal];
     [buttona addTarget:self action:@selector(buttona) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:buttona];
+    buttona.hidden = YES;
+    
     
 //    NSData* classDataSave = [NSKeyedArchiver archivedDataWithRootObject:[[NSMutableArray alloc] init]];
 //    [[NSUserDefaults standardUserDefaults] setObject:classDataSave forKey:@"ItemArray"];
@@ -86,14 +96,14 @@
 //-(void)BASYO{
 //    textc_i=true;
 //}
--(void)datepicker:(UIDatePicker* )picker {
+- (void)datepicker:(UIDatePicker* )picker {
     kigen_i=true;
     [self shouldShowButtonA];
 }
 
 - (void)shouldShowButtonA {
     if (kigen_i && texta_i && textb_i && textc_i) {
-        [self.view addSubview:buttona];
+        buttona.hidden = NO;
     }
 }
 
@@ -114,7 +124,7 @@
     Item *item = [[Item alloc] initWithCoder:nil];
     item.name = texta.text;
     item.count = [textb.text integerValue];
-    item.basyo = textc.text;
+    item.basyo = (NSString*)textc;
     item.limitDate = datepicker.date;
     
     NSLog(@"item to be added %@", item.debugDescription);
@@ -163,18 +173,26 @@
     
     [texta setText:@""];
     [textb setText:@""];
-    [textc setText:@""];
+//    [textc setText:@""];
+    textc.selectedSegmentIndex=0;
     
     texta_i=false;
     textb_i=false;
     textc_i=false;
     kigen_i=false;
     
-   // buttona.hidden = YES;
-
+    [datepicker setDate:[NSDate date]];
+    
+    buttona.hidden = YES;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
     if (textField == texta) {
         texta_i = YES;
     } else if (textField == textb) {
@@ -182,20 +200,7 @@
     } else  {
         textc_i = YES;
     }
-    
-    [textField resignFirstResponder];
-    return YES;
-    
-    [texta setText:@""];
-    [textb setText:@""];
-    [textc setText:@""];
-    [datepicker setDate:[NSDate date]];
-    
-    texta_i=false;
-    textb_i=false;
-    textc_i=false;
-    kigen_i=false;
-}
 
+}
 
 @end

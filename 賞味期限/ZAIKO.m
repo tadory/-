@@ -7,6 +7,8 @@
 //
 
 #import "ZAIKO.h"
+#import "Item.h"
+#import "ItemCell.h"
 
 @implementation ZAIKO
 -(void)viewDidLoad{
@@ -15,47 +17,35 @@
     tableview.delegate = self;
     tableview.dataSource = self;
     
-    contentArray = @[@"りゅう", @"たか", @"がちゃぴん", @"まっすー"];
+    NSData* classDataLoad = [[NSUserDefaults standardUserDefaults]  dataForKey:@"ItemArray"];
+    contentArray = [NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //セルの数
-    switch (section) {
-        case 0:
-            return 3;
-            break;
-        case 1:
-            return 1;
-            break;
-        case 2:
-            
-            break;
-            
-        default:
-            break;
-    }
-    return 0;
+    return contentArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *cellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    static NSString *cellIdentifier = @"ItemCell";
+    ItemCell *cell = (ItemCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
-    // セルが作成されていないか?
-    if (!cell) { // yes
-        // セルを作成
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
+    Item *item = contentArray[indexPath.row];
     
-    // セルにテキストを設定
-    cell.textLabel.text = [contentArray objectAtIndex:indexPath.row];
+    cell.nameLabel.text = item.name;
+    cell.basyoLabel.text = item.basyo;
+    cell.countLabel.text = [NSString stringWithFormat:@"%d個",(int)item.count];
+    
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.dateFormat = @"yyyy/MM/dd";
+    
+    cell.kigenLabel.text = [df stringFromDate:item.limitDate];
     
     return cell;
 }

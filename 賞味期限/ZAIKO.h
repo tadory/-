@@ -13,6 +13,7 @@
 {
     IBOutlet UITableView *tableview;
     NSArray *contentArray;
+    
 }
 
 @end

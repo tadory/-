@@ -17,6 +17,7 @@
 		D28392411A864F860035094C /* TOUROKU.m in Sources */ = {isa = PBXBuildFile; fileRef = D28392401A864F860035094C /* TOUROKU.m */; };
 		D2846C001A95CDA7001134D4 /* ZAIKO.m in Sources */ = {isa = PBXBuildFile; fileRef = D2846BFF1A95CDA7001134D4 /* ZAIKO.m */; };
 		D2846C031A95E6E3001134D4 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = D2846C021A95E6E3001134D4 /* Item.m */; };
+		D2846C061A9F3189001134D4 /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2846C051A9F3189001134D4 /* ItemCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,8 @@
 		D2846BFF1A95CDA7001134D4 /* ZAIKO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZAIKO.m; sourceTree = "<group>"; };
 		D2846C011A95E6E3001134D4 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		D2846C021A95E6E3001134D4 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		D2846C041A9F3189001134D4 /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
+		D2846C051A9F3189001134D4 /* ItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,8 @@
 				D2846C021A95E6E3001134D4 /* Item.m */,
 				D2846BFE1A95CDA7001134D4 /* ZAIKO.h */,
 				D2846BFF1A95CDA7001134D4 /* ZAIKO.m */,
+				D2846C041A9F3189001134D4 /* ItemCell.h */,
+				D2846C051A9F3189001134D4 /* ItemCell.m */,
 				D28392261A864E250035094C /* Images.xcassets */,
 				D28392281A864E250035094C /* LaunchScreen.xib */,
 				D28392191A864E250035094C /* Supporting Files */,
@@ -237,6 +242,7 @@
 				D2846C031A95E6E3001134D4 /* Item.m in Sources */,
 				D2846C001A95CDA7001134D4 /* ZAIKO.m in Sources */,
 				D28392221A864E250035094C /* ViewController.m in Sources */,
+				D2846C061A9F3189001134D4 /* ItemCell.m in Sources */,
 				D28392411A864F860035094C /* TOUROKU.m in Sources */,
 				D283921F1A864E250035094C /* AppDelegate.m in Sources */,
 				D283921C1A864E250035094C /* main.m in Sources */,
