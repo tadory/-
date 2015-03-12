@@ -141,6 +141,8 @@
         itemArray = [[NSMutableArray alloc] init];
     }
     
+    
+    
     [itemArray addObject:item];
     
     NSLog(@"new array %@", itemArray);
