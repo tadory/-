@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+//@property (nonatomic,weak) IBOutlet UISearchBar *search;
 
-@interface ZAIKO : UIViewController
-<UITableViewDataSource, UITableViewDelegate>
+@interface ZAIKO : UIViewController<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
 {
-    IBOutlet UITableView *tableview;
+    IBOutlet UITableView *itemTableview;
     NSArray *contentArray;
-    
+    NSArray *searchItemArray;
 }
+
 
 @end

@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *basyoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *kigenLabel;
 
-@property (weak, nonatomic)
-    IBOutlet UISearchBar  *search;
+//@property (weak, nonatomic)
+//    IBOutlet UISearchBar  *search;
 
 @end

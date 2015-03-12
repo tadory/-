@@ -49,14 +49,11 @@
 ////    [textc addTarget:self action:@selector(BASYO) forControlEvents:UIControlEventEditingDidEndOnExit];
 //    [textc becomeFirstResponder];
 //    [self.view addSubview:textc];
-    NSArray *BasyoArray =[NSArray arrayWithObjects:@"冷蔵庫",@"棚",@"その他",nil];
-    textc=[[UISegmentedControl alloc]initWithItems:BasyoArray];
+    basyoArray = @[@"冷蔵庫",@"棚",@"その他"];
+    textc=[[UISegmentedControl alloc]initWithItems:basyoArray];
     textc.frame=CGRectMake(56,194,208,30);
-    textc.segmentedControlStyle=UISegmentedControlStylePlain;
     textc.selectedSegmentIndex=0;
-    [textc addTarget:self action:@selector(BASYO) forControlEvents:UIControlEventEditingDidEndOnExit];
     [self.view addSubview:textc];
-    
     
     
     datepicker =[[UIDatePicker alloc]initWithFrame:CGRectMake(15, 250, 289, 120)];
@@ -102,7 +99,7 @@
 }
 
 - (void)shouldShowButtonA {
-    if (kigen_i && texta_i && textb_i && textc_i) {
+    if (kigen_i && texta_i && textb_i && textc.selectedSegmentIndex>=0) {
         buttona.hidden = NO;
     }
 }
@@ -124,7 +121,14 @@
     Item *item = [[Item alloc] initWithCoder:nil];
     item.name = texta.text;
     item.count = [textb.text integerValue];
-    item.basyo = (NSString*)textc;
+    item.basyo = basyoArray[textc.selectedSegmentIndex];
+//    if(textc.selectedSegmentIndex==0){
+//        item.basyo=@"冷蔵庫";
+//    }else if(textc.selectedSegmentIndex==1){
+//        item.basyo=@"棚";
+//    }else if(textc.selectedSegmentIndex==2){
+//        item.basyo=@"その他";
+//    }
     item.limitDate = datepicker.date;
     
     NSLog(@"item to be added %@", item.debugDescription);
@@ -197,10 +201,10 @@
         texta_i = YES;
     } else if (textField == textb) {
         textb_i = YES;
-    } else  {
-        textc_i = YES;
-    }
+//    } else  {
+//        textc_i = YES;
+//    }
 
-}
+    }}
 
 @end

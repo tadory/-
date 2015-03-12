@@ -24,7 +24,7 @@
     
 //    NSMutableArray *hinmeiarray;
 //    NSMutableArray *hinsuuarray;
-//    NSMutableArray *basyoarray;
+    NSArray *basyoArray;
 //    NSMutableArray *kigenarray;
     
     UIDatePicker *datepicker;
