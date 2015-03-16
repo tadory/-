@@ -31,7 +31,8 @@
     
     textb = [[UITextField alloc] initWithFrame:CGRectMake(56, 128, 208, 30)];
     textb.borderStyle =UITextBorderStyleRoundedRect;
-    textb.KeyboardType=UIKeyboardTypeDefault;
+//    textb.KeyboardType=UIKeyboardTypeNumberPad;
+    textb.KeyboardType=UIKeyboardTypeNumbersAndPunctuation;
     textb.placeholder=@"品数";
     textb.delegate = self;
     textb.clearButtonMode=UITextFieldViewModeAlways;
@@ -81,6 +82,20 @@
     
     
 }
+
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//    [super viewWillAppear:animated];
+//    
+//    //	Notification 登録
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+//}
+//
+//- (void)viewDidAppear:(BOOL)animated
+//{
+//    [super viewDidAppear:animated];
+//}
 
 //-(void)HINMEI{
 //    texta_i=true;
@@ -140,12 +155,22 @@
     if (itemArray == nil && itemArray.count == 0) {
         itemArray = [[NSMutableArray alloc] init];
     }
+        for(int a=0;a<itemArray.count;a++){
+        NSString *name = ((Item *)itemArray[a]).name;
+        NSRange range =[name rangeOfString:item.name options:NSCaseInsensitiveSearch];
+        if(range.length==item.name.length){
+            ((Item *)itemArray[a]).count = ((Item *)itemArray[a]).count+((Item *)item).count;
+            ArrayRecognize=YES;
+        }}
+    if(ArrayRecognize==NO){
+        [itemArray addObject:item];
+    }
     
     
-    
-    [itemArray addObject:item];
     
     NSLog(@"new array %@", itemArray);
+    
+ 
     
     // 保存
     NSData* classDataSave = [NSKeyedArchiver archivedDataWithRootObject:itemArray];

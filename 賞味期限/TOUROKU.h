@@ -14,6 +14,7 @@
     BOOL textb_i;
     BOOL textc_i;
     BOOL kigen_i;
+    BOOL ArrayRecognize;
     
     UITextField *texta;
     UITextField *textb;
@@ -28,8 +29,10 @@
 //    NSMutableArray *kigenarray;
     
     UIDatePicker *datepicker;
+    
+    UIButton *doneButton;
 }
--(IBAction)buttona;
+
 
 
 @end
