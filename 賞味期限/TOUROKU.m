@@ -17,6 +17,7 @@
     textb_i=false;
     textc_i=false;
     kigen_i=false;
+    ArrayRecognize=NO;
     
     texta = [[UITextField alloc] initWithFrame:CGRectMake(56, 65, 208, 30)];
     texta.borderStyle =UITextBorderStyleRoundedRect;
@@ -25,18 +26,18 @@
     texta.delegate = self;
     
         texta.clearButtonMode=UITextFieldViewModeAlways;
-//    [texta addTarget:self action:@selector(HINMEI) forControlEvents:UIControlEventEditingDidEndOnExit];
+    //[texta addTarget:self action:@selector(HINMEI) forControlEvents:UIControlEventEditingDidEndOnExit];
     [texta becomeFirstResponder];
     [self.view addSubview:texta];
     
     textb = [[UITextField alloc] initWithFrame:CGRectMake(56, 128, 208, 30)];
     textb.borderStyle =UITextBorderStyleRoundedRect;
-//    textb.KeyboardType=UIKeyboardTypeNumberPad;
+    textb.KeyboardType=UIKeyboardTypeNumberPad;
     textb.KeyboardType=UIKeyboardTypeNumbersAndPunctuation;
     textb.placeholder=@"品数";
     textb.delegate = self;
     textb.clearButtonMode=UITextFieldViewModeAlways;
-//    [textb addTarget:self action:@selector(HINSUU) forControlEvents:UIControlEventEditingDidEndOnExit];
+    //[textb addTarget:self action:@selector(HINSUU) forControlEvents:UIControlEventEditingDidEndOnExit];
     [textb becomeFirstResponder];
     [self.view addSubview:textb];
     
@@ -155,13 +156,17 @@
     if (itemArray == nil && itemArray.count == 0) {
         itemArray = [[NSMutableArray alloc] init];
     }
-        for(int a=0;a<itemArray.count;a++){
+        for(int a=0;a<=itemArray.count;a++){
         NSString *name = ((Item *)itemArray[a]).name;
-        NSRange range =[name rangeOfString:item.name options:NSCaseInsensitiveSearch];
-        if(range.length==item.name.length){
+        NSString *searchstring = ((Item *)item).name;
+        NSRange range =[name rangeOfString:searchstring options:NSCaseInsensitiveSearch];
+        if(range.length==searchstring.length && name.length==range.length){
             ((Item *)itemArray[a]).count = ((Item *)itemArray[a]).count+((Item *)item).count;
             ArrayRecognize=YES;
         }}
+    
+    
+    
     if(ArrayRecognize==NO){
         [itemArray addObject:item];
     }
@@ -198,8 +203,15 @@
 //    [kigen setObject:kigenarray forKey:@"kigen"];
     
     
+    NSMutableString *AlertMessage = [NSMutableString stringWithString:@",,,を設定しました"];
+    NSInteger num =item.count;
+    NSString *numstring = [[NSString alloc] initWithFormat:@"%ld",(long)num];
+    [AlertMessage insertString:item.name atIndex:1];
+    [AlertMessage insertString:numstring atIndex:3];
+    [AlertMessage insertString:item.basyo atIndex:5];
+    [AlertMessage insertString:item.limitDate atIndex:7];
     
-    UIAlertView *alert =[[UIAlertView alloc] initWithTitle:@"message" message:@"texta.text,textb.text,textc.text,Dateで設定しました" delegate:nil cancelButtonTitle:@"完了"otherButtonTitles:nil, nil];
+    UIAlertView *alert =[[UIAlertView alloc] initWithTitle:@"message" message:AlertMessage delegate:nil cancelButtonTitle:@"完了" otherButtonTitles:nil, nil];
     [alert show];
     
     [texta setText:@""];
@@ -226,12 +238,16 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     if (textField == texta) {
         texta_i = YES;
+        ArrayRecognize=NO;
     } else if (textField == textb) {
         textb_i = YES;
+        ArrayRecognize=NO;
 //    } else  {
 //        textc_i = YES;
 //    }
 
     }}
+
+
 
 @end

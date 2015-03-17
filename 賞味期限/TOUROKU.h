@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TOUROKU : UIViewController <UITextFieldDelegate> {
+@interface TOUROKU : UIViewController <UIAlertViewDelegate,UITextFieldDelegate> {
     int i;
     BOOL texta_i;
     BOOL textb_i;

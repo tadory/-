@@ -34,7 +34,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView ==  self.searchDisplayController.searchResultsTableView) {
-        NSLog(@"%d", searchItemArray.count);
+        NSLog(@"%lu", (unsigned long)searchItemArray.count);
         return searchItemArray.count;
     } else {
         return contentArray.count;
