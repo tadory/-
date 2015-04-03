@@ -16,12 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="74U-mT-saa">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <items>
-                                    <barButtonItem title="Item" id="agV-IZ-e9X"/>
-                                </items>
-                            </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="qaZ-3W-aIH">
                                 <rect key="frame" x="0.0" y="60" width="320" height="464"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -67,6 +61,24 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4PR-SA-gVT">
+                                                    <rect key="frame" x="82" y="1" width="55" height="30"/>
+                                                    <state key="normal" title="⏫">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="UP" destination="gCZ-eq-gaY" eventType="touchUpInside" id="1uI-U4-6R0"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E7w-UB-TTu">
+                                                    <rect key="frame" x="82" y="67" width="55" height="30"/>
+                                                    <state key="normal" title="⏬">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="DOWN" destination="gCZ-eq-gaY" eventType="touchUpInside" id="7BB-Yn-LOq"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -78,15 +90,37 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f4n-ah-lBu">
+                                <rect key="frame" x="0.0" y="16" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="fixedSpace" id="04Y-D4-hwr"/>
+                                    <barButtonItem width="26" style="plain" systemItem="fixedSpace" id="q1r-K8-BaY"/>
+                                    <barButtonItem title="編集" width="47" id="uzZ-MW-3fV">
+                                        <connections>
+                                            <action selector="hensyuubutton" destination="gCZ-eq-gaY" id="FW0-7t-eFg"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="146" style="plain" systemItem="fixedSpace" id="P5U-mx-xyA"/>
+                                    <barButtonItem title="削除" id="RC9-BZ-SE5">
+                                        <connections>
+                                            <action selector="sakuzyobutton" destination="gCZ-eq-gaY" id="Shx-5Z-3Aj"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="在庫" selectedImage="1-2.png" id="6p1-yX-RPJ"/>
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="XP5-h1-eNf"/>
+                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="fKM-fn-XhW"/>
+                    </toolbarItems>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="itemTableview" destination="qaZ-3W-aIH" id="iBC-3I-K5r"/>
+                        <outlet property="sakuzyoButton" destination="RC9-BZ-SE5" id="0NW-j5-wec"/>
                         <outlet property="searchDisplayController" destination="bN7-Ya-GvD" id="wll-Bj-OM4"/>
                     </connections>
                 </viewController>

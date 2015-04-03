@@ -15,15 +15,29 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     
+    douka=NO;
+    
+    sakuzyoButton.enabled = NO;
+    sakuzyoButton.tintColor = [UIColor clearColor];
+    
     itemTableview.delegate = self;
     itemTableview.dataSource = self;
-    self.navigationItem.rightBarButtonItem = [self editButtonItem];
+    
+    if (!contentArray) {
+        contentArray = [[NSMutableArray alloc] init];
+    }
+    
+    if (!searchItemArray) {
+        searchItemArray = [NSMutableArray new];
+    }
     
     
     [self.searchDisplayController.searchResultsTableView setRowHeight:itemTableview.rowHeight];
     
     [self.searchDisplayController.searchResultsTableView registerClass:[ItemCell class] forCellReuseIdentifier:@"ItemCell"];
-}
+    
+   }
+
 
 - (void)viewDidAppear:(BOOL)animated {
     NSData* classDataLoad = [[NSUserDefaults standardUserDefaults]  dataForKey:@"ItemArray"];
@@ -69,26 +83,26 @@
     
     return cell;
     
-//    if (tableView ==  self.searchDisplayController.searchResultsTableView) {
-//        UITableViewCell  *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-//        cell.textLabel.text =  @"aaaaa";
-//        return cell;
-//    } else {
-//        static NSString *cellIdentifier = @"ItemCell";
-//        ItemCell *cell = (ItemCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-//
-//        Item *item = contentArray[indexPath.row];
-//        cell.nameLabel.text = item.name;
-//        cell.basyoLabel.text = item.basyo;
-//        cell.countLabel.text = [NSString stringWithFormat:@"%d個",(int)item.count];
-//        
-//        NSDateFormatter *df = [[NSDateFormatter alloc] init];
-//        df.dateFormat = @"yyyy/MM/dd";
-//        
-//        cell.kigenLabel.text = [df stringFromDate:item.limitDate];
-//        
-//        return cell;
-//    }
+    //    if (tableView ==  self.searchDisplayController.searchResultsTableView) {
+    //        UITableViewCell  *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    //        cell.textLabel.text =  @"aaaaa";
+    //        return cell;
+    //    } else {
+    //        static NSString *cellIdentifier = @"ItemCell";
+    //        ItemCell *cell = (ItemCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    //
+    //        Item *item = contentArray[indexPath.row];
+    //        cell.nameLabel.text = item.name;
+    //        cell.basyoLabel.text = item.basyo;
+    //        cell.countLabel.text = [NSString stringWithFormat:@"%d個",(int)item.count];
+    //
+    //        NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    //        df.dateFormat = @"yyyy/MM/dd";
+    //
+    //        cell.kigenLabel.text = [df stringFromDate:item.limitDate];
+    //
+    //        return cell;
+    //    }
 }
 
 - (void)filterContainsWithSearchText:(NSString *)searchText
@@ -109,6 +123,49 @@
     return YES;
 }
 
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(editingStyle == UITableViewCellEditingStyleDelete){
+        [tableView beginUpdates];
+        
+        [contentArray removeObjectAtIndex:indexPath.row];
+        NSData *classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
+        [[NSUserDefaults standardUserDefaults]setObject:classDataSave forKey:@"ItemArray"];
+
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [tableView endUpdates];
+    }
+    
+    
+    // [tableView reloadRowsAtIndexPaths:[tableView indexPathsForVisibleRows] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+
+-(IBAction)sakuzyobutton{
+    
+    if(douka==NO){
+        [self->itemTableview setEditing:YES animated:YES];
+        douka=YES;
+    }else{
+        [self->itemTableview setEditing:NO animated:NO];
+        douka=NO;
+    }
+}
+-(IBAction)hensyuubutton{
+    
+    if (sakuzyoButton.enabled == NO) {
+        sakuzyoButton.enabled = YES;
+        sakuzyoButton.tintColor = [UIColor blueColor];
+    }else {
+        sakuzyoButton.enabled = NO;
+        sakuzyoButton.tintColor = [UIColor clearColor];
+        if(douka==YES){
+        [self->itemTableview setEditing:NO animated:NO];
+        douka=NO;
+          }
+    
+    }
+
+}
 
 
 @end

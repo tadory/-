@@ -12,9 +12,16 @@
 @interface ZAIKO : UIViewController<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
 {
     IBOutlet UITableView *itemTableview;
-    NSArray *contentArray;
-    NSArray *searchItemArray;
+    IBOutlet UIBarButtonItem *sakuzyoButton;
+    
+    NSMutableArray *contentArray;
+    NSMutableArray *searchItemArray;
+    
+    BOOL douka;
 }
-
+-(IBAction)sakuzyobutton;
+-(IBAction)hensyuubutton;
+-(IBAction)UP;
+-(IBAction)DOWN;
 
 @end
