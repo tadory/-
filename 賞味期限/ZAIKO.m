@@ -17,13 +17,18 @@
     
     itemTableview.delegate = self;
     itemTableview.dataSource = self;
+    self.navigationItem.rightBarButtonItem = [self editButtonItem];
     
-    NSData* classDataLoad = [[NSUserDefaults standardUserDefaults]  dataForKey:@"ItemArray"];
-    contentArray = [NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
     
     [self.searchDisplayController.searchResultsTableView setRowHeight:itemTableview.rowHeight];
     
     [self.searchDisplayController.searchResultsTableView registerClass:[ItemCell class] forCellReuseIdentifier:@"ItemCell"];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    NSData* classDataLoad = [[NSUserDefaults standardUserDefaults]  dataForKey:@"ItemArray"];
+    contentArray = [NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
+    [itemTableview reloadData];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

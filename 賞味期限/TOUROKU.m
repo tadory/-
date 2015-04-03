@@ -25,7 +25,7 @@
     texta.placeholder=@"品名";
     texta.delegate = self;
     
-        texta.clearButtonMode=UITextFieldViewModeAlways;
+    texta.clearButtonMode=UITextFieldViewModeAlways;
     //[texta addTarget:self action:@selector(HINMEI) forControlEvents:UIControlEventEditingDidEndOnExit];
     [texta becomeFirstResponder];
     [self.view addSubview:texta];
@@ -41,20 +41,21 @@
     [textb becomeFirstResponder];
     [self.view addSubview:textb];
     
-//    textc = [[UITextField alloc] initWithFrame:CGRectMake(56, 194, 208, 30)];
-//    textc.borderStyle =UITextBorderStyleRoundedRect;
-//    textc.KeyboardType=UIKeyboardTypeDefault;
-//    textc.placeholder=@"場所";
-//    textc.delegate = self;
-//
-//    textc.clearButtonMode=UITextFieldViewModeAlways;
-////    [textc addTarget:self action:@selector(BASYO) forControlEvents:UIControlEventEditingDidEndOnExit];
-//    [textc becomeFirstResponder];
-//    [self.view addSubview:textc];
+    //    textc = [[UITextField alloc] initWithFrame:CGRectMake(56, 194, 208, 30)];
+    //    textc.borderStyle =UITextBorderStyleRoundedRect;
+    //    textc.KeyboardType=UIKeyboardTypeDefault;
+    //    textc.placeholder=@"場所";
+    //    textc.delegate = self;
+    //
+    //    textc.clearButtonMode=UITextFieldViewModeAlways;
+    ////    [textc addTarget:self action:@selector(BASYO) forControlEvents:UIControlEventEditingDidEndOnExit];
+    //    [textc becomeFirstResponder];
+    //    [self.view addSubview:textc];
     basyoArray = @[@"冷蔵庫",@"棚",@"その他"];
     textc=[[UISegmentedControl alloc]initWithItems:basyoArray];
     textc.frame=CGRectMake(56,194,208,30);
     textc.selectedSegmentIndex=0;
+    //textc.tintColor = [UIColor blackColor];
     [self.view addSubview:textc];
     
     
@@ -73,13 +74,13 @@
     buttona.hidden = YES;
     
     
-//    NSData* classDataSave = [NSKeyedArchiver archivedDataWithRootObject:[[NSMutableArray alloc] init]];
-//    [[NSUserDefaults standardUserDefaults] setObject:classDataSave forKey:@"ItemArray"];
+    //    NSData* classDataSave = [NSKeyedArchiver archivedDataWithRootObject:[[NSMutableArray alloc] init]];
+    //    [[NSUserDefaults standardUserDefaults] setObject:classDataSave forKey:@"ItemArray"];
     
-//    hinmeiarray =[NSMutableArray array];
-//    hinsuuarray =[NSMutableArray array];
-//    basyoarray =[NSMutableArray array];
-//    kigenarray =[NSMutableArray array];
+    //    hinmeiarray =[NSMutableArray array];
+    //    hinsuuarray =[NSMutableArray array];
+    //    basyoarray =[NSMutableArray array];
+    //    kigenarray =[NSMutableArray array];
     
     
 }
@@ -87,7 +88,7 @@
 //- (void)viewWillAppear:(BOOL)animated
 //{
 //    [super viewWillAppear:animated];
-//    
+//
 //    //	Notification 登録
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -121,30 +122,30 @@
 }
 
 -(void)buttona{
-//    NSUserDefaults *hinmei =[NSUserDefaults standardUserDefaults];
-//    [hinmei setObject:texta.text forKey:@"hinmei"];
-//    
-//    NSUserDefaults*hinsuu =[NSUserDefaults standardUserDefaults];
-//    [hinsuu setObject:textb.text forKey:@"hinsuu"];
-//    
-//    NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
-//    [formatter setDateFormat:@"yyyy年 M月 d日"];
-//    NSString *Date =[formatter stringFromDate:Datepicker.date];
-//    
-//    NSUserDefaults*datepicker =[NSUserDefaults standardUserDefaults];
-//    [datepicker setObject:Date forKey:@"datepicker"];
+    //    NSUserDefaults *hinmei =[NSUserDefaults standardUserDefaults];
+    //    [hinmei setObject:texta.text forKey:@"hinmei"];
+    //
+    //    NSUserDefaults*hinsuu =[NSUserDefaults standardUserDefaults];
+    //    [hinsuu setObject:textb.text forKey:@"hinsuu"];
+    //
+    //    NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
+    //    [formatter setDateFormat:@"yyyy年 M月 d日"];
+    //    NSString *Date =[formatter stringFromDate:Datepicker.date];
+    //
+    //    NSUserDefaults*datepicker =[NSUserDefaults standardUserDefaults];
+    //    [datepicker setObject:Date forKey:@"datepicker"];
     
     Item *item = [[Item alloc] initWithCoder:nil];
     item.name = texta.text;
     item.count = [textb.text integerValue];
     item.basyo = basyoArray[textc.selectedSegmentIndex];
-//    if(textc.selectedSegmentIndex==0){
-//        item.basyo=@"冷蔵庫";
-//    }else if(textc.selectedSegmentIndex==1){
-//        item.basyo=@"棚";
-//    }else if(textc.selectedSegmentIndex==2){
-//        item.basyo=@"その他";
-//    }
+    //    if(textc.selectedSegmentIndex==0){
+    //        item.basyo=@"冷蔵庫";
+    //    }else if(textc.selectedSegmentIndex==1){
+    //        item.basyo=@"棚";
+    //    }else if(textc.selectedSegmentIndex==2){
+    //        item.basyo=@"その他";
+    //    }
     item.limitDate = datepicker.date;
     
     NSLog(@"item to be added %@", item.debugDescription);
@@ -156,14 +157,16 @@
     if (itemArray == nil && itemArray.count == 0) {
         itemArray = [[NSMutableArray alloc] init];
     }
-        for(int a=0;a<=itemArray.count;a++){
+    
+    for(int a = 0; a < itemArray.count; a++){
         NSString *name = ((Item *)itemArray[a]).name;
         NSString *searchstring = ((Item *)item).name;
         NSRange range =[name rangeOfString:searchstring options:NSCaseInsensitiveSearch];
         if(range.length==searchstring.length && name.length==range.length){
             ((Item *)itemArray[a]).count = ((Item *)itemArray[a]).count+((Item *)item).count;
             ArrayRecognize=YES;
-        }}
+        }
+    }
     
     
     
@@ -175,48 +178,47 @@
     
     NSLog(@"new array %@", itemArray);
     
- 
+    
     
     // 保存
     NSData* classDataSave = [NSKeyedArchiver archivedDataWithRootObject:itemArray];
     [[NSUserDefaults standardUserDefaults] setObject:classDataSave forKey:@"ItemArray"];
     
-//    [hinmeiarray addObject:texta.text];
-//    [hinsuuarray addObject:textb.text];
-//    [basyoarray addObject:textc];
+    //    [hinmeiarray addObject:texta.text];
+    //    [hinsuuarray addObject:textb.text];
+    //    [basyoarray addObject:textc];
     
-//    NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
-//    [formatter setDateFormat:@"yyyy年 M月 d日"];
-//    NSString *Date =[formatter stringFromDate:Datepicker.date];
-//    [kigenarray addObject:Date];
-//    
-//    NSUserDefaults *hinmei =[NSUserDefaults standardUserDefaults];
-//    [hinmei setObject:hinmeiarray forKey:@"hinmei"];
-//    
-//    NSUserDefaults *hinsuu =[NSUserDefaults standardUserDefaults];
-//    [hinsuu setObject:hinsuuarray forKey:@"hinsuu"];
-//    
-//    NSUserDefaults *basyo=[NSUserDefaults standardUserDefaults];
-//    [basyo setObject:basyoarray forKey:@"basyo"];
-//    
-//    NSUserDefaults *kigen=[NSUserDefaults standardUserDefaults];
-//    [kigen setObject:kigenarray forKey:@"kigen"];
+    //    NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
+    //    [formatter setDateFormat:@"yyyy年 M月 d日"];
+    //    NSString *Date =[formatter stringFromDate:Datepicker.date];
+    //    [kigenarray addObject:Date];
+    //
+    //    NSUserDefaults *hinmei =[NSUserDefaults standardUserDefaults];
+    //    [hinmei setObject:hinmeiarray forKey:@"hinmei"];
+    //
+    //    NSUserDefaults *hinsuu =[NSUserDefaults standardUserDefaults];
+    //    [hinsuu setObject:hinsuuarray forKey:@"hinsuu"];
+    //
+    //    NSUserDefaults *basyo=[NSUserDefaults standardUserDefaults];
+    //    [basyo setObject:basyoarray forKey:@"basyo"];
+    //
+    //    NSUserDefaults *kigen=[NSUserDefaults standardUserDefaults];
+    //    [kigen setObject:kigenarray forKey:@"kigen"];
     
-    
-    NSMutableString *AlertMessage = [NSMutableString stringWithString:@",,,を設定しました"];
-    NSInteger num =item.count;
-    NSString *numstring = [[NSString alloc] initWithFormat:@"%ld",(long)num];
-    [AlertMessage insertString:item.name atIndex:1];
-    [AlertMessage insertString:numstring atIndex:3];
-    [AlertMessage insertString:item.basyo atIndex:5];
-    [AlertMessage insertString:item.limitDate atIndex:7];
+    //
+//    NSString *datestrong = [item.limitDate description];
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.dateFormat = @"yyyy/MM/dd";
+    NSString *datestrong = [df stringFromDate:item.limitDate];
+    //NSLog(@"%@",datestrong);
+    NSString *AlertMessage = [NSString stringWithFormat:@"%@,%d,%@,%@を保存しました",item.name,item.count,item.basyo,datestrong];
     
     UIAlertView *alert =[[UIAlertView alloc] initWithTitle:@"message" message:AlertMessage delegate:nil cancelButtonTitle:@"完了" otherButtonTitles:nil, nil];
     [alert show];
     
     [texta setText:@""];
     [textb setText:@""];
-//    [textc setText:@""];
+    //    [textc setText:@""];
     textc.selectedSegmentIndex=0;
     
     texta_i=false;
@@ -235,17 +237,17 @@
     return YES;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField{
+- (void)textFieldShouldEndEditing:(UITextField *)textField{
     if (textField == texta) {
         texta_i = YES;
         ArrayRecognize=NO;
     } else if (textField == textb) {
         textb_i = YES;
         ArrayRecognize=NO;
-//    } else  {
-//        textc_i = YES;
-//    }
-
+        //    } else  {
+        //        textc_i = YES;
+        //    }
+        
     }}
 
 

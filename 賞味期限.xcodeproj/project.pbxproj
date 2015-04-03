@@ -18,6 +18,8 @@
 		D2846C001A95CDA7001134D4 /* ZAIKO.m in Sources */ = {isa = PBXBuildFile; fileRef = D2846BFF1A95CDA7001134D4 /* ZAIKO.m */; };
 		D2846C031A95E6E3001134D4 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = D2846C021A95E6E3001134D4 /* Item.m */; };
 		D2846C061A9F3189001134D4 /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2846C051A9F3189001134D4 /* ItemCell.m */; };
+		D2B4626D1ABAC1F1001543DB /* m.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B4626B1ABAC1F1001543DB /* m.png */; };
+		D2B4626E1ABAC1F1001543DB /* 1-2.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B4626C1ABAC1F1001543DB /* 1-2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		D2846C021A95E6E3001134D4 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		D2846C041A9F3189001134D4 /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
 		D2846C051A9F3189001134D4 /* ItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCell.m; sourceTree = "<group>"; };
+		D2B4626B1ABAC1F1001543DB /* m.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = m.png; path = ../../../Downloads/m.png; sourceTree = "<group>"; };
+		D2B4626C1ABAC1F1001543DB /* 1-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "1-2.png"; path = "../../../Downloads/1-2.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 				D2846BFF1A95CDA7001134D4 /* ZAIKO.m */,
 				D2846C041A9F3189001134D4 /* ItemCell.h */,
 				D2846C051A9F3189001134D4 /* ItemCell.m */,
+				D2B4626B1ABAC1F1001543DB /* m.png */,
+				D2B4626C1ABAC1F1001543DB /* 1-2.png */,
 				D28392261A864E250035094C /* Images.xcassets */,
 				D28392281A864E250035094C /* LaunchScreen.xib */,
 				D28392191A864E250035094C /* Supporting Files */,
@@ -220,7 +226,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D28392251A864E250035094C /* Main.storyboard in Resources */,
+				D2B4626E1ABAC1F1001543DB /* 1-2.png in Resources */,
 				D283922A1A864E250035094C /* LaunchScreen.xib in Resources */,
+				D2B4626D1ABAC1F1001543DB /* m.png in Resources */,
 				D28392271A864E250035094C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
