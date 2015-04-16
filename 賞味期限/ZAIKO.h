@@ -21,7 +21,5 @@
 }
 -(IBAction)sakuzyobutton;
 -(IBAction)hensyuubutton;
--(IBAction)UP;
--(IBAction)DOWN;
 
 @end

@@ -15,6 +15,9 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     
+    Up.hidden=YES;
+    Down.hidden=YES;
+    
     douka=NO;
     
     sakuzyoButton.enabled = NO;
@@ -162,10 +165,14 @@
         [self->itemTableview setEditing:NO animated:NO];
         douka=NO;
           }
-    
     }
-
 }
 
+-(IBAction)Up{
+    
+}
 
+-(IBAction)Down{
+    
+}
 @end

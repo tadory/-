@@ -241,6 +241,7 @@
     if (textField == texta) {
         texta_i = YES;
         ArrayRecognize=NO;
+        
     } else if (textField == textb) {
         textb_i = YES;
         ArrayRecognize=NO;
