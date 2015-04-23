@@ -21,7 +21,7 @@
     
     texta = [[UITextField alloc] initWithFrame:CGRectMake(56, 65, 208, 30)];
     texta.borderStyle =UITextBorderStyleRoundedRect;
-    texta.KeyboardType=UIKeyboardTypeDefault;
+    texta.keyboardType=UIKeyboardTypeDefault;
     texta.placeholder=@"品名";
     texta.delegate = self;
     
@@ -32,8 +32,8 @@
     
     textb = [[UITextField alloc] initWithFrame:CGRectMake(56, 128, 208, 30)];
     textb.borderStyle =UITextBorderStyleRoundedRect;
-    textb.KeyboardType=UIKeyboardTypeNumberPad;
-    textb.KeyboardType=UIKeyboardTypeNumbersAndPunctuation;
+    textb.keyboardType=UIKeyboardTypeNumberPad;
+    textb.keyboardType=UIKeyboardTypeNumbersAndPunctuation;
     textb.placeholder=@"品数";
     textb.delegate = self;
     textb.clearButtonMode=UITextFieldViewModeAlways;
@@ -211,7 +211,7 @@
     df.dateFormat = @"yyyy/MM/dd";
     NSString *datestrong = [df stringFromDate:item.limitDate];
     //NSLog(@"%@",datestrong);
-    NSString *AlertMessage = [NSString stringWithFormat:@"%@,%d,%@,%@を保存しました",item.name,item.count,item.basyo,datestrong];
+    NSString *AlertMessage = [NSString stringWithFormat:@"%@,%ld,%@,%@を保存しました",item.name,(long)item.count,item.basyo,datestrong];
     
     UIAlertView *alert =[[UIAlertView alloc] initWithTitle:@"message" message:AlertMessage delegate:nil cancelButtonTitle:@"完了" otherButtonTitles:nil, nil];
     [alert show];
