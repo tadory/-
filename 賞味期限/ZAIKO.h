@@ -14,6 +14,9 @@
     IBOutlet UITableView *itemTableview;
     IBOutlet UIBarButtonItem *sakuzyoButton;
     
+    UIButton *upButton;
+    UIButton *downButton;   
+    
     NSMutableArray *contentArray;
     NSMutableArray *searchItemArray;
     

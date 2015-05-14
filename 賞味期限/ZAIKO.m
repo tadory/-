@@ -11,12 +11,16 @@
 #import "ItemCell.h"
 
 
-@implementation ZAIKO
+@implementation ZAIKO {
+    
+}
+
+
 -(void)viewDidLoad{
     [super viewDidLoad];
     
-    Up.hidden=YES;
-    Down.hidden=YES;
+    upButton.hidden=YES;
+    downButton.hidden=YES;
     
     douka=NO;
     
@@ -53,8 +57,7 @@
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView ==  self.searchDisplayController.searchResultsTableView) {
         NSLog(@"%lu", (unsigned long)searchItemArray.count);
         return searchItemArray.count;
@@ -85,28 +88,11 @@
     cell.kigenLabel.text = [df stringFromDate:item.limitDate];
     
     return cell;
-    
-    //    if (tableView ==  self.searchDisplayController.searchResultsTableView) {
-    //        UITableViewCell  *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    //        cell.textLabel.text =  @"aaaaa";
-    //        return cell;
-    //    } else {
-    //        static NSString *cellIdentifier = @"ItemCell";
-    //        ItemCell *cell = (ItemCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    //
-    //        Item *item = contentArray[indexPath.row];
-    //        cell.nameLabel.text = item.name;
-    //        cell.basyoLabel.text = item.basyo;
-    //        cell.countLabel.text = [NSString stringWithFormat:@"%d個",(int)item.count];
-    //
-    //        NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    //        df.dateFormat = @"yyyy/MM/dd";
-    //
-    //        cell.kigenLabel.text = [df stringFromDate:item.limitDate];
-    //
-    //        return cell;
-    //    }
+
 }
+
+
+
 
 - (void)filterContainsWithSearchText:(NSString *)searchText
 {
@@ -126,9 +112,12 @@
     return YES;
 }
 
+
+
+
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if(editingStyle == UITableViewCellEditingStyleDelete){
-        [tableView beginUpdates];
+        
         
         [contentArray removeObjectAtIndex:indexPath.row];
         NSData *classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
@@ -168,11 +157,5 @@
     }
 }
 
--(IBAction)Up{
-    
-}
 
--(IBAction)Down{
-    
-}
 @end

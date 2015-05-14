@@ -10,4 +10,18 @@
 
 @implementation ItemCell
 
+
+- (IBAction)upButtonPushed {
+    NSLog(@"up");
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    /* TODO */
+    /*
+     UserDefaultsに保存されているItemsクラスの配列オブジェクトを取り出して、COUNTキーをイジる
+     */
+}
+- (IBAction)downButtonPushed {
+    NSLog(@"down");
+}
+
+
 @end

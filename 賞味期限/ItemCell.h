@@ -19,6 +19,10 @@
 @property (strong, nonatomic) IBOutlet UIButton *Down;
 
 
+- (IBAction)upButtonPushed;
+- (IBAction)downButtonPushed;
+
+
 //@property (weak, nonatomic)
 //    IBOutlet UISearchBar  *search;
 
