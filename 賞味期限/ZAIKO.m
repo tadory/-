@@ -23,6 +23,7 @@
     downButton.hidden=YES;
     
     douka=NO;
+    sakuzyo=NO;
     
     sakuzyoButton.enabled = NO;
     sakuzyoButton.tintColor = [UIColor clearColor];
@@ -43,7 +44,25 @@
     
     [self.searchDisplayController.searchResultsTableView registerClass:[ItemCell class] forCellReuseIdentifier:@"ItemCell"];
     
-   }
+    // デフォルトの通知センターを取得する
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(reloadCellContent) name:@"Tuchi" object:nil];
+    
+    NSNotificationCenter *noti = [NSNotificationCenter defaultCenter];
+    [noti addObserver:self selector:@selector(sakuzyo) name:@"Sakuzyo" object:nil];
+}
+
+
+-(void)reloadCellContent{
+    // ここに何かの処理を記述する
+    NSData* classDataLoad = [[NSUserDefaults standardUserDefaults]  dataForKey:@"ItemArray"];
+    contentArray = [NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
+    [itemTableview reloadData];
+}
+
+-(void)sakuzyo{
+    sakuzyo=YES;
+}
 
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -88,7 +107,7 @@
     cell.kigenLabel.text = [df stringFromDate:item.limitDate];
     
     return cell;
-
+    
 }
 
 
@@ -113,8 +132,6 @@
 }
 
 
-
-
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if(editingStyle == UITableViewCellEditingStyleDelete){
         
@@ -122,9 +139,22 @@
         [contentArray removeObjectAtIndex:indexPath.row];
         NSData *classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
         [[NSUserDefaults standardUserDefaults]setObject:classDataSave forKey:@"ItemArray"];
-
+        
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         [tableView endUpdates];
+    }
+    
+    if(sakuzyo==YES){
+        
+        
+        [contentArray removeObjectAtIndex:indexPath.row];
+        NSData *classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
+        [[NSUserDefaults standardUserDefaults]setObject:classDataSave forKey:@"ItemArray"];
+        
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [tableView endUpdates];
+        
+        sakuzyo=NO;
     }
     
     
@@ -151,9 +181,9 @@
         sakuzyoButton.enabled = NO;
         sakuzyoButton.tintColor = [UIColor clearColor];
         if(douka==YES){
-        [self->itemTableview setEditing:NO animated:NO];
-        douka=NO;
-          }
+            [self->itemTableview setEditing:NO animated:NO];
+            douka=NO;
+        }
     }
 }
 

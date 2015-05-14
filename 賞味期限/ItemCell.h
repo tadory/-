@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ItemCell : UITableViewCell
+@interface ItemCell : UITableViewCell<UIAlertViewDelegate>
 
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;

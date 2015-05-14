@@ -21,6 +21,7 @@
     NSMutableArray *searchItemArray;
     
     BOOL douka;
+    BOOL sakuzyo;
 }
 -(IBAction)sakuzyobutton;
 -(IBAction)hensyuubutton;
