@@ -85,6 +85,10 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "&#x8cde;&#x5473;&#x671f;&#x9650;(ja)"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-AppleLanguages (ja)"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

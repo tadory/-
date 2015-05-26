@@ -31,7 +31,7 @@
                                     </connections>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="100" id="eNN-ga-6LT" customClass="ItemCell">
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="ItemCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="100" id="eNN-ga-6LT" customClass="ItemCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eNN-ga-6LT" id="WtN-ZZ-q60">
@@ -82,8 +82,6 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="Down" destination="E7w-UB-TTu" id="dcA-Ov-gaA"/>
-                                            <outlet property="Up" destination="4PR-SA-gVT" id="i2n-zn-oG1"/>
                                             <outlet property="basyoLabel" destination="YVy-GL-Tn7" id="74b-If-Lu4"/>
                                             <outlet property="countLabel" destination="zbm-wm-ued" id="PSH-WX-qft"/>
                                             <outlet property="kigenLabel" destination="xNA-eI-Ekq" id="GZo-Z5-Ymi"/>
@@ -118,7 +116,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="itemTableview" destination="qaZ-3W-aIH" id="iBC-3I-K5r"/>
+                        <outlet property="itemTableview" destination="qaZ-3W-aIH" id="ZzE-5z-lQM"/>
                         <outlet property="sakuzyoButton" destination="RC9-BZ-SE5" id="0NW-j5-wec"/>
                         <outlet property="searchDisplayController" destination="bN7-Ya-GvD" id="wll-Bj-OM4"/>
                     </connections>

@@ -18,9 +18,10 @@
 @property (strong, nonatomic) IBOutlet UIButton *Up;
 @property (strong, nonatomic) IBOutlet UIButton *Down;
 
-
 - (IBAction)upButtonPushed;
 - (IBAction)downButtonPushed;
+
+NSMutableArray *contentArray;
 
 
 //@property (weak, nonatomic)
