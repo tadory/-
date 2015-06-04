@@ -18,13 +18,9 @@
 @property (strong, nonatomic) IBOutlet UIButton *Up;
 @property (strong, nonatomic) IBOutlet UIButton *Down;
 
-- (IBAction)upButtonPushed;
-- (IBAction)downButtonPushed;
-
-NSMutableArray *contentArray;
+- (IBAction)upButtonPushed:(UIButton *)buttonInfo;
+- (IBAction)downButtonPushed:(UIButton *)buttonInfo;
 
 
-//@property (weak, nonatomic)
-//    IBOutlet UISearchBar  *search;
 
 @end

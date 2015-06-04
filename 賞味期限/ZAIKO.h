@@ -9,19 +9,19 @@
 #import <UIKit/UIKit.h>
 //@property (nonatomic,weak) IBOutlet UISearchBar *search;
 
-@interface ZAIKO : UIViewController<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
+@interface ZAIKO : UIViewController<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate,UIAlertViewDelegate, UISearchDisplayDelegate>
 {
     IBOutlet UITableView *itemTableview;
     IBOutlet UIBarButtonItem *sakuzyoButton;
-    
-    UIButton *upButton;
-    UIButton *downButton;   
-    
+    IBOutlet UISearchBar *zaikoSearchBar;
+
     NSMutableArray *contentArray;
     NSMutableArray *searchItemArray;
+    NSIndexPath *indexPath;
     
     BOOL douka;
     BOOL sakuzyo;
+    BOOL zyouge;
 }
 -(IBAction)sakuzyobutton;
 -(IBAction)hensyuubutton;

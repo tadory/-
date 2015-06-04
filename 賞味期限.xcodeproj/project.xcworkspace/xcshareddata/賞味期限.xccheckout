@@ -18,7 +18,7 @@
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>8A013921ECB084A630BAFD5C773C836EDF6795DC</key>
-		<string>../..</string>
+		<string>../../../%E8%B3%9E%E5%91%B3%E6%9C%9F%E9%99%90</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/tadory/SYOUMIKIGEN.git</string>
@@ -28,6 +28,14 @@
 	<string>8A013921ECB084A630BAFD5C773C836EDF6795DC</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8A013921ECB084A630BAFD5C773C836EDF6795DC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>%E8%B3%9E%E5%91%B3%E6%9C%9F%E9%99%90</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

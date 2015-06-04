@@ -18,15 +18,14 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    
-    upButton.hidden=YES;
-    downButton.hidden=YES;
+    zyouge =NO;
     
     douka=NO;
     sakuzyo=NO;
     
     sakuzyoButton.enabled = NO;
     sakuzyoButton.tintColor = [UIColor clearColor];
+    zaikoSearchBar.delegate = self;
     
     itemTableview.delegate = self;
     itemTableview.dataSource = self;
@@ -38,11 +37,6 @@
     if (!searchItemArray) {
         searchItemArray = [NSMutableArray new];
     }
-    
-    
-    [self.searchDisplayController.searchResultsTableView setRowHeight:itemTableview.rowHeight];
-    
-    [self.searchDisplayController.searchResultsTableView registerClass:[ItemCell class] forCellReuseIdentifier:@"ItemCell"];
     
     // デフォルトの通知センターを取得する
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
@@ -62,7 +56,49 @@
 
 -(void)sakuzyo{
     sakuzyo=YES;
+    NSString *massage = [NSString stringWithFormat:@"%@を在庫から消去しますか？",((Item *)contentArray[indexPath.row]).name];
+    UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"確認" message:massage delegate:self cancelButtonTitle:@"いいえ" otherButtonTitles:@"はい", nil];
+    alert.cancelButtonIndex = 1;
+    [alert show];
+    
 }
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSData *classDataLoad = [[NSUserDefaults standardUserDefaults]  dataForKey:@"ItemArray"];
+    NSMutableArray *ContentArray = [NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
+    NSData *classDataSave = [NSKeyedArchiver archivedDataWithRootObject:ContentArray];
+    NSNotification *nc;
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSLog(@"buttonIndex == %d", (int)buttonIndex);
+    switch (buttonIndex) {
+        case 0:
+            ((Item *)contentArray[indexPath.row]).count=1;
+            classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
+            [[NSUserDefaults standardUserDefaults]setObject:classDataSave forKey:@"ItemArray"];
+            nc = [NSNotification notificationWithName:@"Tuchi" object:self];
+            [[NSNotificationCenter defaultCenter]postNotification:nc];
+            [ud synchronize];
+            [itemTableview reloadData];
+            NSLog(@"数は%ld",(long)((Item *)contentArray[indexPath.row]).count);
+            break;
+        case 1:
+            
+            [contentArray removeObjectAtIndex:indexPath.row];
+            classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
+            [[NSUserDefaults standardUserDefaults]setObject:classDataSave forKey:@"ItemArray"];
+            [ud synchronize];
+            
+            [itemTableview reloadData];
+            /*
+            [itemTableview deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [itemTableview endUpdates];
+            */
+            sakuzyo=NO;
+            break;
+    }
+}
+
 
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -90,6 +126,20 @@
     static NSString *cellIdentifier = @"ItemCell";
     ItemCell *cell = (ItemCell *)[itemTableview dequeueReusableCellWithIdentifier:cellIdentifier];
     
+    UIButton *upButton = (UIButton *)[cell viewWithTag:100];
+    UIButton *downButton = (UIButton *)[cell viewWithTag:200];
+    
+    //編集ボタンが押されてない時はhidden YES
+    if(zyouge==YES){
+        upButton.hidden = NO;
+        downButton.hidden = NO;
+    }else{
+        upButton.hidden = YES;
+        downButton.hidden = YES;
+    }
+    
+
+    
     Item *item;
     if (tableView ==  self.searchDisplayController.searchResultsTableView) {
         item = searchItemArray[indexPath.row];
@@ -101,6 +151,8 @@
     cell.basyoLabel.text = item.basyo;
     cell.countLabel.text = [NSString stringWithFormat:@"%d個",(int)item.count];
     
+    cell.tag = indexPath.row;
+    
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     df.dateFormat = @"yyyy/MM/dd";
     
@@ -110,17 +162,48 @@
     
 }
 
+#pragma mark - SearchBar Delegate
+- (void)searchItem:(NSString *) searchText {
+    // 検索処理
+    for (Item *item in contentArray) {
+        if ([searchText isEqualToString:item.name]) {
+            
+        }
+    }
+}
+
+- (void)searchBarSearchButtonClicked: (UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+    [self searchItem:searchBar.text];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *) searchText {
+    NSLog(@"serch text=%@", searchText);
+    if ([searchText length]!=0) {
+        // インクリメンタル検索など
+        [self filterContainsWithSearchText:searchText];
+    }else {
+        [itemTableview reloadData];
+    }
+}
 
 
+
+#pragma mark - SearchDisplayController
 
 - (void)filterContainsWithSearchText:(NSString *)searchText
 {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
+    NSLog(@"predicate == %@", predicate);
     
-    searchItemArray = [contentArray filteredArrayUsingPredicate:predicate];
+    contentArray = [[contentArray filteredArrayUsingPredicate:predicate] mutableCopy];
     NSLog(@"%@", searchItemArray);
+    [itemTableview reloadData];
+    NSData* classDataLoad = [[NSUserDefaults standardUserDefaults]  dataForKey:@"ItemArray"];
+    contentArray = [NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
 }
 
+/*
 - (BOOL)searchDisplayController:controller shouldReloadTableForSearchString:(NSString *)searchString
 {
     // 検索バーに入力された文字列を引数に、絞り込みをかけます
@@ -130,7 +213,7 @@
     // リロードすることでsearchItemArrayからテーブルビューを表示します
     return YES;
 }
-
+*/
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if(editingStyle == UITableViewCellEditingStyleDelete){
@@ -144,18 +227,7 @@
         [tableView endUpdates];
     }
     
-    if(sakuzyo==YES){
-        
-        
-        [contentArray removeObjectAtIndex:indexPath.row];
-        NSData *classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
-        [[NSUserDefaults standardUserDefaults]setObject:classDataSave forKey:@"ItemArray"];
-        
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-        [tableView endUpdates];
-        
-        sakuzyo=NO;
-    }
+    
     
     
     // [tableView reloadRowsAtIndexPaths:[tableView indexPathsForVisibleRows] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -163,8 +235,8 @@
 
 
 -(IBAction)sakuzyobutton{
-    
-    if(douka==NO){
+
+        if(douka==NO){
         [self->itemTableview setEditing:YES animated:YES];
         douka=YES;
     }else{
@@ -176,15 +248,20 @@
     
     if (sakuzyoButton.enabled == NO) {
         sakuzyoButton.enabled = YES;
+        zyouge=YES;
         sakuzyoButton.tintColor = [UIColor blueColor];
+        [itemTableview reloadData];
     }else {
         sakuzyoButton.enabled = NO;
         sakuzyoButton.tintColor = [UIColor clearColor];
+        zyouge=NO;
         if(douka==YES){
             [self->itemTableview setEditing:NO animated:NO];
             douka=NO;
         }
+        [itemTableview reloadData];
     }
+    
 }
 
 
