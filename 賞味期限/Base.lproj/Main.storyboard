@@ -116,6 +116,7 @@
                         <outlet property="sakuzyoButton" destination="RC9-BZ-SE5" id="0NW-j5-wec"/>
                         <outlet property="searchDisplayController" destination="bN7-Ya-GvD" id="wll-Bj-OM4"/>
                         <outlet property="zaikoSearchBar" destination="Gqu-WO-zWF" id="jc0-Wc-ivj"/>
+                        <segue destination="0yN-oX-Ie9" kind="presentation" identifier="MainDetail" id="9RA-uq-gip"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DiW-WC-rmu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -128,7 +129,27 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="132" y="540"/>
+            <point key="canvasLocation" x="168" y="540"/>
+        </scene>
+        <!--Detail-->
+        <scene sceneID="0se-Ht-OTb">
+            <objects>
+                <viewController id="0yN-oX-Ie9" customClass="Detail" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2Ve-fi-Cjj"/>
+                        <viewControllerLayoutGuide type="bottom" id="obT-rH-c6s"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zg8-p8-xYC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="OOB-0P-Jcn"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uRc-si-bTO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="526" y="540"/>
         </scene>
         <!--登録-->
         <scene sceneID="HJJ-w5-I4Q">

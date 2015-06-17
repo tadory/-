@@ -9,10 +9,11 @@
 #import "ZAIKO.h"
 #import "Item.h"
 #import "ItemCell.h"
+#import "Detail.h"
 
 
 @implementation ZAIKO {
-    
+    Item *passItem;
 }
 
 
@@ -160,6 +161,29 @@
     
     return cell;
     
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+            //Segueの特定
+        if ( [[segue identifier] isEqualToString:@"MainDetail"] ) {
+            Detail *detail = segue.destinationViewController;
+            //ここで遷移先ビューのクラスの変数receiveStringに値を渡している
+            detail.receivedItems = passItem;
+
+        }
+   
+}
+
+- (IBAction)nextView:(id)sender {
+    [self performSegueWithIdentifier:@"MainDetail" sender:self];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    passItem = contentArray[indexPath.row];
+    NSLog(@"%d", passItem);
+    [self performSegueWithIdentifier:@"MainDetail" sender:self];
+
 }
 
 #pragma mark - SearchBar Delegate

@@ -25,5 +25,6 @@
 }
 -(IBAction)sakuzyobutton;
 -(IBAction)hensyuubutton;
+- (IBAction)nextView;
 
 @end
