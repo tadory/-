@@ -17,7 +17,7 @@
 
     NSMutableArray *contentArray;
     NSMutableArray *searchItemArray;
-    NSIndexPath *indexPath;
+    NSIndexPath *IndexPath;
     
     BOOL douka;
     BOOL sakuzyo;

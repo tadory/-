@@ -57,7 +57,7 @@
 
 -(void)sakuzyo{
     sakuzyo=YES;
-    NSString *massage = [NSString stringWithFormat:@"%@を在庫から消去しますか？",((Item *)contentArray[indexPath.row]).name];
+    NSString *massage = [NSString stringWithFormat:@"%@を在庫から消去しますか？",((Item *)contentArray[IndexPath.row]).name];
     UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"確認" message:massage delegate:self cancelButtonTitle:@"いいえ" otherButtonTitles:@"はい", nil];
     alert.cancelButtonIndex = 1;
     [alert show];
@@ -74,18 +74,18 @@
     NSLog(@"buttonIndex == %d", (int)buttonIndex);
     switch (buttonIndex) {
         case 0:
-            ((Item *)contentArray[indexPath.row]).count=1;
+            ((Item *)contentArray[IndexPath.row]).count=1;
             classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
             [[NSUserDefaults standardUserDefaults]setObject:classDataSave forKey:@"ItemArray"];
             nc = [NSNotification notificationWithName:@"Tuchi" object:self];
             [[NSNotificationCenter defaultCenter]postNotification:nc];
             [ud synchronize];
             [itemTableview reloadData];
-            NSLog(@"数は%ld",(long)((Item *)contentArray[indexPath.row]).count);
+            NSLog(@"数は%ld",(long)((Item *)contentArray[IndexPath.row]).count);
             break;
         case 1:
             
-            [contentArray removeObjectAtIndex:indexPath.row];
+            [contentArray removeObjectAtIndex:IndexPath.row];
             classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
             [[NSUserDefaults standardUserDefaults]setObject:classDataSave forKey:@"ItemArray"];
             [ud synchronize];
@@ -124,6 +124,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+//    IndexPath = [NSIndexPath indexPathForRow:indexPath inSection:0];
+    
     static NSString *cellIdentifier = @"ItemCell";
     ItemCell *cell = (ItemCell *)[itemTableview dequeueReusableCellWithIdentifier:cellIdentifier];
     
@@ -175,12 +178,12 @@
    
 }
 
-- (IBAction)nextView:(id)sender {
-    [self performSegueWithIdentifier:@"MainDetail" sender:self];
-}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    IndexPath = [NSIndexPath indexPathForRow:indexPath inSection:0];
+
     passItem = contentArray[indexPath.row];
+    IndexPath = indexPath;
     NSLog(@"%d", passItem);
     [self performSegueWithIdentifier:@"MainDetail" sender:self];
 
