@@ -50,6 +50,7 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
+                                                        <action selector="UpButton:" destination="gCZ-eq-gaY" eventType="touchUpInside" id="7OM-4j-mN0"/>
                                                         <action selector="upButtonPushed:" destination="eNN-ga-6LT" eventType="touchUpInside" id="dq3-GF-Cen"/>
                                                     </connections>
                                                 </button>
@@ -59,6 +60,7 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
+                                                        <action selector="DownButton:" destination="gCZ-eq-gaY" eventType="touchUpInside" id="T8j-p7-dsc"/>
                                                         <action selector="downButtonPushed:" destination="eNN-ga-6LT" eventType="touchUpInside" id="cN7-1z-DHQ"/>
                                                     </connections>
                                                 </button>

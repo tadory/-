@@ -135,10 +135,6 @@
     //    NSUserDefaults*datepicker =[NSUserDefaults standardUserDefaults];
     //    [datepicker setObject:Date forKey:@"datepicker"];
     
-    Item *item = [[Item alloc] initWithCoder:nil];
-    item.name = texta.text;
-    item.count = [textb.text integerValue];
-    item.basyo = basyoArray[textc.selectedSegmentIndex];
     //    if(textc.selectedSegmentIndex==0){
     //        item.basyo=@"冷蔵庫";
     //    }else if(textc.selectedSegmentIndex==1){
@@ -146,7 +142,18 @@
     //    }else if(textc.selectedSegmentIndex==2){
     //        item.basyo=@"その他";
     //    }
+
+    
+    Item *item = [[Item alloc] initWithCoder:nil];
+    item.name = texta.text;
+    item.count = [textb.text integerValue];
+    item.basyo = basyoArray[textc.selectedSegmentIndex];
     item.limitDate = datepicker.date;
+    NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy年 M月 d日"];
+    NSString *Date =[formatter stringFromDate:datepicker.date];
+    NSString *Number=[NSString stringWithFormat:@"%ld",(long)item.count];
+    item.limitDateArray[Date] = Number;
     
     NSLog(@"item to be added %@", item.debugDescription);
     

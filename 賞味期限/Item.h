@@ -14,5 +14,6 @@
 @property (nonatomic, assign) NSInteger count;
 @property (nonatomic, strong) NSString *basyo;
 @property (nonatomic, strong) NSDate *limitDate;
+@property (nonatomic, strong) NSMutableDictionary *limitDateArray;
 
 @end

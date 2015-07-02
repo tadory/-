@@ -14,6 +14,7 @@
 @synthesize count;
 @synthesize basyo;
 @synthesize limitDate;
+@synthesize limitDateArray;
 
 
 - (void)encodeWithCoder:(NSCoder *)aCoder{

@@ -57,7 +57,7 @@
 
 -(void)sakuzyo{
     sakuzyo=YES;
-    NSString *massage = [NSString stringWithFormat:@"%@を在庫から消去しますか？",((Item *)contentArray[IndexPath.row]).name];
+    NSString *massage = [NSString stringWithFormat:@"%@を在庫から消去しますか？",((Item *)contentArray[IndexPath]).name];
     UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"確認" message:massage delegate:self cancelButtonTitle:@"いいえ" otherButtonTitles:@"はい", nil];
     alert.cancelButtonIndex = 1;
     [alert show];
@@ -74,18 +74,18 @@
     NSLog(@"buttonIndex == %d", (int)buttonIndex);
     switch (buttonIndex) {
         case 0:
-            ((Item *)contentArray[IndexPath.row]).count=1;
+            ((Item *)contentArray[IndexPath]).count=1;
             classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
             [[NSUserDefaults standardUserDefaults]setObject:classDataSave forKey:@"ItemArray"];
             nc = [NSNotification notificationWithName:@"Tuchi" object:self];
             [[NSNotificationCenter defaultCenter]postNotification:nc];
             [ud synchronize];
             [itemTableview reloadData];
-            NSLog(@"数は%ld",(long)((Item *)contentArray[IndexPath.row]).count);
+            NSLog(@"数は%ld",(long)((Item *)contentArray[IndexPath]).count);
             break;
         case 1:
             
-            [contentArray removeObjectAtIndex:IndexPath.row];
+            [contentArray removeObjectAtIndex:IndexPath];
             classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
             [[NSUserDefaults standardUserDefaults]setObject:classDataSave forKey:@"ItemArray"];
             [ud synchronize];
@@ -183,7 +183,7 @@
 //    IndexPath = [NSIndexPath indexPathForRow:indexPath inSection:0];
 
     passItem = contentArray[indexPath.row];
-    IndexPath = indexPath;
+    //IndexPath = indexPath;
     NSLog(@"%d", passItem);
     [self performSegueWithIdentifier:@"MainDetail" sender:self];
 
@@ -271,6 +271,7 @@
         douka=NO;
     }
 }
+
 -(IBAction)hensyuubutton{
     
     if (sakuzyoButton.enabled == NO) {
@@ -290,6 +291,15 @@
     }
     
 }
+
+
+-(IBAction)UpButton:(UIButton *)buttonInfo{
+    IndexPath = buttonInfo.superview.superview.tag;
+}
+-(IBAction)DownButton:(UIButton *)buttonInfo{
+    IndexPath = buttonInfo.superview.superview.tag;
+}
+
 
 
 @end

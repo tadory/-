@@ -17,7 +17,7 @@
 
     NSMutableArray *contentArray;
     NSMutableArray *searchItemArray;
-    NSIndexPath *IndexPath;
+    int IndexPath;
     
     BOOL douka;
     BOOL sakuzyo;
@@ -25,6 +25,8 @@
 }
 -(IBAction)sakuzyobutton;
 -(IBAction)hensyuubutton;
-- (IBAction)nextView;
+- (IBAction)UpButton:(UIButton *)buttonInfo;
+- (IBAction)DownButton:(UIButton *)buttonInfo;
+
 
 @end
