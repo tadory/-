@@ -9,8 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "Item.h"
 
-@interface Detail : UIViewController {
+
+@interface Detail : UIViewController <UITableViewDataSource, UITableViewDelegate>
+{
     Item *items;
+    IBOutlet UITableView *itemTableView;
+    
+    NSMutableArray *contentArray;
+    
 }
 
 @property (nonatomic)Item *receivedItems;
