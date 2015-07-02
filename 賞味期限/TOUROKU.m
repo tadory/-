@@ -171,6 +171,7 @@
         NSRange range =[name rangeOfString:searchstring options:NSCaseInsensitiveSearch];
         if(range.length==searchstring.length && name.length==range.length){
             ((Item *)itemArray[a]).count = ((Item *)itemArray[a]).count+((Item *)item).count;
+            ((Item *)itemArray[a]).limitDate;
             ArrayRecognize=YES;
         }
     }
