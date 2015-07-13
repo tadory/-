@@ -23,6 +23,7 @@
 		D2846C001A95CDA7001134D4 /* ZAIKO.m in Sources */ = {isa = PBXBuildFile; fileRef = D2846BFF1A95CDA7001134D4 /* ZAIKO.m */; };
 		D2846C031A95E6E3001134D4 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = D2846C021A95E6E3001134D4 /* Item.m */; };
 		D2BB47F01B5253BF00A3F7FD /* ItemCelltwo.m in Sources */ = {isa = PBXBuildFile; fileRef = D2BB47EF1B5253BF00A3F7FD /* ItemCelltwo.m */; };
+		D2E9D0851B53A22600860E3D /* DateOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E9D0841B53A22600860E3D /* DateOrder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,8 @@
 		D2846C041A9F3189001134D4 /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
 		D2BB47EE1B5253BF00A3F7FD /* ItemCelltwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCelltwo.h; sourceTree = "<group>"; };
 		D2BB47EF1B5253BF00A3F7FD /* ItemCelltwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCelltwo.m; sourceTree = "<group>"; };
+		D2E9D0831B53A22600860E3D /* DateOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DateOrder.h; path = ../DateOrder.h; sourceTree = "<group>"; };
+		D2E9D0841B53A22600860E3D /* DateOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DateOrder.m; path = ../DateOrder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +127,8 @@
 				D28392401A864F860035094C /* TOUROKU.m */,
 				D2846C011A95E6E3001134D4 /* Item.h */,
 				D2846C021A95E6E3001134D4 /* Item.m */,
+				D2E9D0831B53A22600860E3D /* DateOrder.h */,
+				D2E9D0841B53A22600860E3D /* DateOrder.m */,
 				D2846BFE1A95CDA7001134D4 /* ZAIKO.h */,
 				D2846BFF1A95CDA7001134D4 /* ZAIKO.m */,
 				D2846C041A9F3189001134D4 /* ItemCell.h */,
@@ -277,6 +282,7 @@
 				D2BB47F01B5253BF00A3F7FD /* ItemCelltwo.m in Sources */,
 				D283921F1A864E250035094C /* AppDelegate.m in Sources */,
 				AF2F26371B45467F0060624F /* Detail.m in Sources */,
+				D2E9D0851B53A22600860E3D /* DateOrder.m in Sources */,
 				D283921C1A864E250035094C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

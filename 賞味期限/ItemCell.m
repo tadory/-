@@ -22,7 +22,7 @@
     
     int index = buttonInfo.superview.superview.tag;
 
-    NSIndexPath *indexPath;
+    //NSIndexPath *indexPath;
     NSData *classDataLoad =[[NSUserDefaults standardUserDefaults] dataForKey:@"ItemArray"];
     contentArray =[NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
     ((Item *)contentArray[index]).count=((Item *)contentArray[index]).count+1;

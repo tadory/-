@@ -9,6 +9,7 @@
 #import "Detail.h"
 #import "Item.h"
 #import "ItemCelltwo.h"
+#import "DateOrder.h"
 
 @implementation Detail
 - (void)viewDidLoad {
@@ -26,10 +27,6 @@
 
 }
 
--(NSComparisonResult)compareWithDate:(Detail *)date{
-     NSMutableArray *onlyKeyArray =[[items.limitDateArray allKeys]mutableCopy];
-    
-}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
    return 1;
@@ -45,6 +42,7 @@
     ItemCelltwo *cell = (ItemCelltwo *)[itemTableViewtwo dequeueReusableCellWithIdentifier:cellIdentifier];
     NSLog(@"%lu",(unsigned long)items.limitDateArray.count);
     NSMutableArray *onlyKeyArray =[[items.limitDateArray allKeys]mutableCopy];
+    onlyKeyArray=[onlyKeyArray sortedArrayUsingSelector:@(compareWithDate)];
     cell.kigenLabel.text =[NSString stringWithFormat:@"%@",onlyKeyArray[indexPath.row]];
     cell.kosuuLabel.text =[NSString stringWithFormat:@"%@",items.limitDateArray[onlyKeyArray[indexPath.row]]];
     
