@@ -171,11 +171,15 @@
         NSRange range =[name rangeOfString:searchstring options:NSCaseInsensitiveSearch];
         if(range.length==searchstring.length && name.length==range.length){
             ((Item *)itemArray[a]).count = ((Item *)itemArray[a]).count+((Item *)item).count;
+            NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"yyyy年 M月 d日"];
+            NSString *dateofa =[formatter stringFromDate:((Item *)itemArray[a]).limitDate];
+            if(dateofa==Date){
             ((Item *)itemArray[a]).limitDateArray[Date] = Number;
             ArrayRecognize=YES;
         }
     }
-    
+    }
     
     
     if(ArrayRecognize==NO){
@@ -249,14 +253,12 @@
     if (textField == texta) {
         texta_i = YES;
         ArrayRecognize=NO;
-        
     } else if (textField == textb) {
         textb_i = YES;
         ArrayRecognize=NO;
         //    } else  {
         //        textc_i = YES;
         //    }
-        
     }}
 
 

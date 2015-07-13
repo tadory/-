@@ -17,8 +17,8 @@
      items = self.receivedItems;
     NSLog(@"%@", items);
     
-    itemTableView.delegate = self;
-    itemTableView.dataSource = self;
+    itemTableViewtwo.delegate = self;
+    itemTableViewtwo.dataSource = self;
     
     NSData *classDataLoad = [[NSUserDefaults standardUserDefaults]dataForKey:@"ItemArray"];
     contentArray=[NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
@@ -32,8 +32,14 @@
     return items.limitDateArray.count;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"ItemCelltwo";
+    ItemCelltwo *cell = (ItemCelltwo *)[itemTableViewtwo dequeueReusableCellWithIdentifier:cellIdentifier];
     NSLog(@"%lu",(unsigned long)items.limitDateArray.count);
+    NSMutableArray *onlykeyArray =[[items.limitDateArray allKeys]mutableCopy];
+    cell.kigenLabel.text =[NSString stringWithFormat:@"%@",onlykeyArray[indexPath.row]];
+    return  cell;
 }
 
 

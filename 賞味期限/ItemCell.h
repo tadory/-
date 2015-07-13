@@ -15,8 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
 @property (weak, nonatomic) IBOutlet UILabel *basyoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *kigenLabel;
-@property (strong, nonatomic) IBOutlet UIButton *Up;
-@property (strong, nonatomic) IBOutlet UIButton *Down;
 
 - (IBAction)upButtonPushed:(UIButton *)buttonInfo;
 - (IBAction)downButtonPushed:(UIButton *)buttonInfo;

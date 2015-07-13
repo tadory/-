@@ -22,7 +22,7 @@
 		D28392411A864F860035094C /* TOUROKU.m in Sources */ = {isa = PBXBuildFile; fileRef = D28392401A864F860035094C /* TOUROKU.m */; };
 		D2846C001A95CDA7001134D4 /* ZAIKO.m in Sources */ = {isa = PBXBuildFile; fileRef = D2846BFF1A95CDA7001134D4 /* ZAIKO.m */; };
 		D2846C031A95E6E3001134D4 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = D2846C021A95E6E3001134D4 /* Item.m */; };
-		D2D0D6DD1B454CC600715C2B /* ItemCelltwo.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D0D6DC1B454CC600715C2B /* ItemCelltwo.m */; };
+		D2BB47F01B5253BF00A3F7FD /* ItemCelltwo.m in Sources */ = {isa = PBXBuildFile; fileRef = D2BB47EF1B5253BF00A3F7FD /* ItemCelltwo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,8 +62,8 @@
 		D2846C011A95E6E3001134D4 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		D2846C021A95E6E3001134D4 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		D2846C041A9F3189001134D4 /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
-		D2D0D6DB1B454CC600715C2B /* ItemCelltwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCelltwo.h; sourceTree = "<group>"; };
-		D2D0D6DC1B454CC600715C2B /* ItemCelltwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCelltwo.m; sourceTree = "<group>"; };
+		D2BB47EE1B5253BF00A3F7FD /* ItemCelltwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCelltwo.h; sourceTree = "<group>"; };
+		D2BB47EF1B5253BF00A3F7FD /* ItemCelltwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCelltwo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,8 +130,8 @@
 				AF2F263A1B4548110060624F /* ItemCell.m */,
 				AF2F26351B45467F0060624F /* Detail.h */,
 				AF2F26361B45467F0060624F /* Detail.m */,
-				D2D0D6DB1B454CC600715C2B /* ItemCelltwo.h */,
-				D2D0D6DC1B454CC600715C2B /* ItemCelltwo.m */,
+				D2BB47EE1B5253BF00A3F7FD /* ItemCelltwo.h */,
+				D2BB47EF1B5253BF00A3F7FD /* ItemCelltwo.m */,
 				D28392261A864E250035094C /* Images.xcassets */,
 				D28392281A864E250035094C /* LaunchScreen.xib */,
 				D28392191A864E250035094C /* Supporting Files */,
@@ -274,7 +274,7 @@
 				D28392221A864E250035094C /* ViewController.m in Sources */,
 				D28392411A864F860035094C /* TOUROKU.m in Sources */,
 				AF2F263B1B4548110060624F /* ItemCell.m in Sources */,
-				D2D0D6DD1B454CC600715C2B /* ItemCelltwo.m in Sources */,
+				D2BB47F01B5253BF00A3F7FD /* ItemCelltwo.m in Sources */,
 				D283921F1A864E250035094C /* AppDelegate.m in Sources */,
 				AF2F26371B45467F0060624F /* Detail.m in Sources */,
 				D283921C1A864E250035094C /* main.m in Sources */,

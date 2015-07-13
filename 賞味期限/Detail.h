@@ -13,7 +13,7 @@
 @interface Detail : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     Item *items;
-    IBOutlet UITableView *itemTableView;
+    IBOutlet UITableView *itemTableViewtwo;
     
     NSMutableArray *contentArray;
     
