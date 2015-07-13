@@ -22,8 +22,15 @@
     
     NSData *classDataLoad = [[NSUserDefaults standardUserDefaults]dataForKey:@"ItemArray"];
     contentArray=[NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
+ 
 
 }
+
+-(NSComparisonResult)compareWithDate:(Detail *)date{
+     NSMutableArray *onlyKeyArray =[[items.limitDateArray allKeys]mutableCopy];
+    
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
    return 1;
 }
@@ -37,8 +44,10 @@
     static NSString *cellIdentifier = @"ItemCelltwo";
     ItemCelltwo *cell = (ItemCelltwo *)[itemTableViewtwo dequeueReusableCellWithIdentifier:cellIdentifier];
     NSLog(@"%lu",(unsigned long)items.limitDateArray.count);
-    NSMutableArray *onlykeyArray =[[items.limitDateArray allKeys]mutableCopy];
-    cell.kigenLabel.text =[NSString stringWithFormat:@"%@",onlykeyArray[indexPath.row]];
+    NSMutableArray *onlyKeyArray =[[items.limitDateArray allKeys]mutableCopy];
+    cell.kigenLabel.text =[NSString stringWithFormat:@"%@",onlyKeyArray[indexPath.row]];
+    cell.kosuuLabel.text =[NSString stringWithFormat:@"%@",items.limitDateArray[onlyKeyArray[indexPath.row]]];
+    
     return  cell;
 }
 

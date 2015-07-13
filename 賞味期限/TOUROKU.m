@@ -173,12 +173,20 @@
             ((Item *)itemArray[a]).count = ((Item *)itemArray[a]).count+((Item *)item).count;
             NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
             [formatter setDateFormat:@"yyyy年 M月 d日"];
-            NSString *dateofa =[formatter stringFromDate:((Item *)itemArray[a]).limitDate];
-            if(dateofa==Date){
-            ((Item *)itemArray[a]).limitDateArray[Date] = Number;
             ArrayRecognize=YES;
+            if(!((Item *)itemArray[a]).limitDateArray[Date]){
+                NSString *bb=[NSString stringWithFormat:@"%d",0];
+                ((Item *)itemArray[a]).limitDateArray[Date]=bb;
+            }
+            NSString *motomostring =((Item *)itemArray[a]).limitDateArray[Date];
+            NSInteger motomoto=[motomostring integerValue];
+            NSInteger a=motomoto+item.count;
+            NSString *aa =[NSString stringWithFormat:@"%ld",(long)a];
+            ((Item *)itemArray[a]).limitDateArray[Date]=aa;
+            
+            
         }
-    }
+    
     }
     
     

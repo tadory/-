@@ -9,6 +9,9 @@
 #import "ItemCelltwo.h"
 
 @implementation ItemCelltwo
+@synthesize kigenLabel;
+@synthesize kosuuLabel;
+
 
 
 @end

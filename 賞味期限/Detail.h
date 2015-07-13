@@ -18,7 +18,9 @@
     NSMutableArray *contentArray;
     
 }
+-(NSComparisonResult)compareWithDate:(Detail *)date;
 
 @property (nonatomic)Item *receivedItems;
+
 
 @end
