@@ -15,16 +15,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-     items = self.receivedItems;
-    NSLog(@"%@", items);
+    items = self.receivedItems;
+    NSLog(@"items == %@", items);
     
     itemTableViewtwo.delegate = self;
     itemTableViewtwo.dataSource = self;
     
-    NSData *classDataLoad = [[NSUserDefaults standardUserDefaults]dataForKey:@"ItemArray"];
-    contentArray=[NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
- 
-
+    if (!contentArray) {
+        contentArray = [NSMutableArray new];
+        
+    }
+    
+    NSData *classDataLoad = [[NSUserDefaults standardUserDefaults] dataForKey:@"ItemArray"];
+    contentArray = [NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
+    NSLog(@"contentArray == %@", contentArray);
 }
 
 
@@ -41,12 +45,16 @@
     static NSString *cellIdentifier = @"ItemCelltwo";
     ItemCelltwo *cell = (ItemCelltwo *)[itemTableViewtwo dequeueReusableCellWithIdentifier:cellIdentifier];
     NSLog(@"%lu",(unsigned long)items.limitDateArray.count);
-    NSMutableArray *onlyKeyArray =[[items.limitDateArray allKeys]mutableCopy];
-    onlyKeyArray=[onlyKeyArray sortedArrayUsingSelector:@(compareWithDate)];
+    
+    NSMutableArray *onlyKeyArray = [[items.limitDateArray allKeys] mutableCopy];
+    
+    
+    
+   // onlyKeyArray=[onlyKeyArray　sortedArrayUsingSelector:@((DateOrder *)compareWithDate)];
     cell.kigenLabel.text =[NSString stringWithFormat:@"%@",onlyKeyArray[indexPath.row]];
     cell.kosuuLabel.text =[NSString stringWithFormat:@"%@",items.limitDateArray[onlyKeyArray[indexPath.row]]];
     
-    return  cell;
+    return cell;
 }
 
 

@@ -18,17 +18,27 @@
 
 
 - (void)encodeWithCoder:(NSCoder *)aCoder{
+    
+    if (!self.limitDateArray) {
+        limitDateArray = [NSMutableDictionary new];
+    }
+    
     [aCoder encodeObject:name forKey:@"NAME"];
     [aCoder encodeInteger:count forKey:@"COUNT"];
     [aCoder encodeObject:basyo forKey:@"BASYO"];
     [aCoder encodeObject:limitDate forKey:@"LIMITTIME"];
+    [aCoder encodeObject:limitDateArray forKey:@"LIMITDATEARRAY"];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder{
+    if (!self.limitDateArray) {
+        limitDateArray = [NSMutableDictionary new];
+    }
     name = [aDecoder decodeObjectForKey:@"NAME"];
     count = [aDecoder decodeIntegerForKey:@"COUNT"];
     basyo = [aDecoder decodeObjectForKey:@"BASYO"];
     limitDate = [aDecoder decodeObjectForKey:@"LIMITTIME"];
+    limitDateArray = [[aDecoder decodeObjectForKey:@"LIMITDATEARRAY"]mutableCopy];
     
     return self;
 }

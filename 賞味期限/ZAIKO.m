@@ -57,8 +57,8 @@
 
 -(void)sakuzyo{
     sakuzyo=YES;
-    NSString *massage = [NSString stringWithFormat:@"%@を在庫から消去しますか？",((Item *)contentArray[IndexPath]).name];
-    UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"確認" message:massage delegate:self cancelButtonTitle:@"いいえ" otherButtonTitles:@"はい", nil];
+    NSString *message = [NSString stringWithFormat:@"%@を在庫から消去しますか？",((Item *)contentArray[IndexPath]).name];
+    UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"確認" message:message delegate:self cancelButtonTitle:@"いいえ" otherButtonTitles:@"はい", nil];
     alert.cancelButtonIndex = 1;
     [alert show];
     
@@ -278,6 +278,7 @@
         sakuzyoButton.enabled = YES;
         zyouge=YES;
         sakuzyoButton.tintColor = [UIColor blueColor];
+        
         [itemTableview reloadData];
     }else {
         sakuzyoButton.enabled = NO;

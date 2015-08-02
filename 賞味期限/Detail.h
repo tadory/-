@@ -14,9 +14,7 @@
 {
     Item *items;
     IBOutlet UITableView *itemTableViewtwo;
-    
     NSMutableArray *contentArray;
-    
 }
 
 @property (nonatomic)Item *receivedItems;

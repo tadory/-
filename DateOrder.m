@@ -10,7 +10,7 @@
 
 @implementation DateOrder
 
-@synthesize compareWithDate;
+//@synthesize compareWithDate;
 
 -(NSComparisonResult)compareWithDate:(DateOrder *)date{
     
