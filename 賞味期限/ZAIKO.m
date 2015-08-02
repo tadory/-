@@ -278,7 +278,6 @@
         sakuzyoButton.enabled = YES;
         zyouge=YES;
         sakuzyoButton.tintColor = [UIColor blueColor];
-        
         [itemTableview reloadData];
     }else {
         sakuzyoButton.enabled = NO;
