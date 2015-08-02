@@ -9,7 +9,7 @@
 #import "Detail.h"
 #import "Item.h"
 #import "ItemCelltwo.h"
-#import "DateOrder.h"
+
 
 @implementation Detail
 - (void)viewDidLoad {
@@ -47,6 +47,12 @@
     NSLog(@"%lu",(unsigned long)items.limitDateArray.count);
     
     NSMutableArray *onlyKeyArray = [[items.limitDateArray allKeys] mutableCopy];
+    for(int i;i<onlyKeyArray.count;i++){
+        NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy年 M月 d日"];
+        onlyKeyArray[i] = [formatter dateFromString:onlyKeyArray[i]];
+    }
+    onlyKeyArray = [[onlyKeyArray sortedArrayUsingSelector:@selector(comparePublishDate:)]mutableCopy];
     
     
     
@@ -56,6 +62,11 @@
     
     return cell;
 }
+
+-(NSComparisonResult) comparePublishDate:(Detail *)_item{
+    return [self->publish_date compare:_item->publish_date];
+}
+
 
 
 @end

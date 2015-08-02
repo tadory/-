@@ -15,7 +15,13 @@
     Item *items;
     IBOutlet UITableView *itemTableViewtwo;
     NSMutableArray *contentArray;
+    
+    NSInteger no;
+    NSString* furigana;
+    NSDate* publish_date;
 }
+
+-(NSComparisonResult) comparePublishDate:(Detail *)_item;
 
 @property (nonatomic)Item *receivedItems;
 
