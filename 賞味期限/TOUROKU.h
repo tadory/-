@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Item.h"
 
 @interface TOUROKU : UIViewController <UIAlertViewDelegate,UITextFieldDelegate> {
     int i;
@@ -29,8 +30,10 @@
 //    NSMutableArray *kigenarray;
     
     UIDatePicker *datepicker;
-    
+
     UIButton *doneButton;
+    
+    Item *item;
 }
 
 

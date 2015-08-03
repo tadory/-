@@ -48,6 +48,20 @@
     NSData* classDataLoad = [[NSUserDefaults standardUserDefaults]  dataForKey:@"ItemArray"];
     NSMutableArray *contentArray = [[NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad] mutableCopy];
     ((Item *)contentArray[index]).count=((Item *)contentArray[index]).count-1;
+    
+    NSMutableArray *onlykeyArray = [[((Item *)contentArray[index]).limitDateArray allKeys]mutableCopy];
+    //ここでonlykeyArrayをソート
+    
+    NSString *motomotostring = onlykeyArray[1];
+    NSInteger motomoto = [motomotostring integerValue];
+    NSInteger numberOfItems = motomoto - 1;
+    NSString *numberString = [NSString stringWithFormat:@"%ld",(long)numberOfItems];
+    if(numberOfItems<=0){
+        NSNotification *noti = [NSNotification notificationWithName:@"Sakuzyo_a" object:self];
+        [[NSNotificationCenter defaultCenter] postNotification:noti];
+    }
+    [((Item *)contentArray[index]).limitDateArray setValue:numberString forKey:onlykeyArray[1]];
+    
     NSData *classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
     [[NSUserDefaults standardUserDefaults]setObject:classDataSave forKey:@"ItemArray"];
     

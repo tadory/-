@@ -16,7 +16,6 @@
     [super viewDidLoad];
     
     items = self.receivedItems;
-    NSLog(@"items == %@", items);
     
     itemTableViewtwo.delegate = self;
     itemTableViewtwo.dataSource = self;
@@ -29,6 +28,10 @@
     NSData *classDataLoad = [[NSUserDefaults standardUserDefaults] dataForKey:@"ItemArray"];
     contentArray = [NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
     NSLog(@"contentArray == %@", contentArray);
+    
+    NSNotificationCenter *noti = [NSNotificationCenter defaultCenter];
+    [noti addObserver:self selector:@selector(Sakuzyo_a) name:@"Sakuzyo_a" object:nil];
+
 }
 
 
@@ -37,16 +40,19 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return items.limitDateArray.count;
+    NSData *classDataLoad = [[NSUserDefaults standardUserDefaults] dataForKey:@"ItemArray"];
+    contentArray = [NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
+    return contentArray[items].limitDateArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     static NSString *cellIdentifier = @"ItemCelltwo";
     ItemCelltwo *cell = (ItemCelltwo *)[itemTableViewtwo dequeueReusableCellWithIdentifier:cellIdentifier];
-    NSLog(@"%lu",(unsigned long)items.limitDateArray.count);
+    //NSLog(@"%lu",(unsigned long)items.limitDateArray.count);
     
-    NSMutableArray *onlyKeyArray = [[items.limitDateArray allKeys] mutableCopy];
+    onlyKeyArray = [[contentArray[items].limitDateArray allKeys] mutableCopy];
     for(int i;i<onlyKeyArray.count;i++){
         NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"yyyy年 M月 d日"];
@@ -54,19 +60,26 @@
     }
     onlyKeyArray = [[onlyKeyArray sortedArrayUsingSelector:@selector(comparePublishDate:)]mutableCopy];
     
-    
-    
-   // onlyKeyArray=[onlyKeyArray　sortedArrayUsingSelector:@((DateOrder *)compareWithDate)];
     cell.kigenLabel.text =[NSString stringWithFormat:@"%@",onlyKeyArray[indexPath.row]];
-    cell.kosuuLabel.text =[NSString stringWithFormat:@"%@",items.limitDateArray[onlyKeyArray[indexPath.row]]];
+    cell.kosuuLabel.text =[NSString stringWithFormat:@"%@",contentArray[items].limitDateArray[onlyKeyArray[indexPath.row]]];
     
     return cell;
 }
+
 
 -(NSComparisonResult) comparePublishDate:(Detail *)_item{
     return [self->publish_date compare:_item->publish_date];
 }
 
+-(void)Sakuzyo_a{
+    NSData *classDataLoad = [[NSUserDefaults standardUserDefaults] dataForKey:@"ItemArray"];
+    contentArray = [NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
+    [contentArray[items].limitDateArray removeObjectForKey:onlyKeyArray[1]];
+    NSData *classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
+    [[NSUserDefaults standardUserDefaults]setObject:classDataSave forKey:@"ItemArray"];
+    [itemTableViewtwo reloadData];
+
+}
 
 
 @end

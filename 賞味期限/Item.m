@@ -19,8 +19,8 @@
 
 - (void)encodeWithCoder:(NSCoder *)aCoder{
     
-    if (!self.limitDateArray) {
-        limitDateArray = [NSMutableDictionary new];
+    if (!limitDateArray) {
+        limitDateArray = [NSMutableDictionary dictionary];
     }
     
     [aCoder encodeObject:name forKey:@"NAME"];
@@ -31,9 +31,10 @@
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder{
-    if (!self.limitDateArray) {
-        limitDateArray = [NSMutableDictionary new];
+    if (!limitDateArray) {
+        limitDateArray = [NSMutableDictionary dictionary];
     }
+    
     name = [aDecoder decodeObjectForKey:@"NAME"];
     count = [aDecoder decodeIntegerForKey:@"COUNT"];
     basyo = [aDecoder decodeObjectForKey:@"BASYO"];

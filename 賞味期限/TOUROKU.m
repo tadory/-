@@ -65,6 +65,9 @@
     [buttona addTarget:self action:@selector(buttona) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttona];
     buttona.hidden = YES;
+    
+    item = [[Item alloc]initWithCoder:nil];
+    item.limitDateArray = [[NSMutableDictionary alloc]init];
 }
 
 #pragma mark - DatePicker
@@ -84,7 +87,6 @@
 
 -(void)buttona{
     
-    Item *item = [[Item alloc] initWithCoder:nil];
     item.name = texta.text;
     item.count = [textb.text integerValue];
     item.basyo = basyoArray[textc.selectedSegmentIndex];

@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x8cde;&#x5473;&#x671f;&#x9650;/ZAIKO.m"
-            timestampString = "460202560.995777"
+            filePath = "&#x8cde;&#x5473;&#x671f;&#x9650;/Item.m"
+            timestampString = "460287687.20051"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "-reloadCellContent"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "-initWithCoder:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

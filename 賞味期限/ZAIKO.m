@@ -13,7 +13,7 @@
 
 
 @implementation ZAIKO {
-    Item *passItem;
+   int passItem;
 }
 
 
@@ -182,9 +182,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //    IndexPath = [NSIndexPath indexPathForRow:indexPath inSection:0];
 
-    passItem = contentArray[indexPath.row];
+    passItem = indexPath.row;
     //IndexPath = indexPath;
-    NSLog(@"%d", passItem);
+    NSLog(@"%@", passItem);
     [self performSegueWithIdentifier:@"MainDetail" sender:self];
 
 }
