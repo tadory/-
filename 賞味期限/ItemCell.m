@@ -21,7 +21,7 @@
     NSMutableArray *contentArray;
     
     int index = buttonInfo.superview.superview.tag;
-
+    
     //NSIndexPath *indexPath;
     NSData *classDataLoad =[[NSUserDefaults standardUserDefaults] dataForKey:@"ItemArray"];
     contentArray =[NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
@@ -56,7 +56,7 @@
     NSInteger motomoto = [motomotostring integerValue];
     NSInteger numberOfItems = motomoto - 1;
     NSString *numberString = [NSString stringWithFormat:@"%ld",(long)numberOfItems];
-    if(numberOfItems<=0){
+    if (numberOfItems <= 0) {
         NSNotification *noti = [NSNotification notificationWithName:@"Sakuzyo_a" object:self];
         [[NSNotificationCenter defaultCenter] postNotification:noti];
     }
@@ -68,9 +68,9 @@
     NSNotification *nc=[NSNotification  notificationWithName:@"Tuchi" object:self];
     [[NSNotificationCenter defaultCenter]postNotification:nc];
     
-    if(((Item *)contentArray[index]).count==0){
-    NSNotification *noti = [NSNotification notificationWithName:@"Sakuzyo" object:self];
-    [[NSNotificationCenter defaultCenter] postNotification:noti];
+    if(((Item *)contentArray[index]).count == 0){
+        NSNotification *noti = [NSNotification notificationWithName:@"Sakuzyo" object:self];
+        [[NSNotificationCenter defaultCenter] postNotification:noti];
     }
 }
 @end

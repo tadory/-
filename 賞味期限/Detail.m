@@ -12,6 +12,7 @@
 
 
 @implementation Detail
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -23,7 +24,6 @@
     
     if (!contentArray) {
         contentArray = [[NSMutableArray alloc]init];
-        
     }
     
     NSData *classDataLoad = [[NSUserDefaults standardUserDefaults] dataForKey:@"ItemArray"];
@@ -31,13 +31,12 @@
     NSLog(@"contentArray == %@", contentArray);
     
     NSNotificationCenter *noti = [NSNotificationCenter defaultCenter];
-    [noti addObserver:self selector:@selector(Sakuzyo_a) name:@"Sakuzyo_a" object:nil];
-
+    [noti addObserver:self selector:@selector(Sakuzyo_a:) name:@"Sakuzyo_a" object:nil];
 }
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-   return 1;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -54,12 +53,12 @@
     //NSLog(@"%lu",(unsigned long)items.limitDateArray.count);
     
     onlyKeyArray = [[items.limitDateArray allKeys] mutableCopy];
-    for(int i;i<onlyKeyArray.count;i++){
-        NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"yyyy年 M月 d日"];
-        onlyKeyArray[i] = [formatter dateFromString:onlyKeyArray[i]];
-    }
-    onlyKeyArray = [[onlyKeyArray sortedArrayUsingSelector:@selector(comparePublishDate:)]mutableCopy];
+    //    for(int i;i<onlyKeyArray.count;i++){
+    //        NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    //        [formatter setDateFormat:@"yyyy年 M月 d日"];
+    //        onlyKeyArray[i] = [formatter dateFromString:onlyKeyArray[i]];
+    //    }
+    //onlyKeyArray = [[onlyKeyArray sortedArrayUsingSelector:@selector(comparePublishDate:)]mutableCopy];
     
     cell.kigenLabel.text =[NSString stringWithFormat:@"%@",onlyKeyArray[indexPath.row]];
     cell.kosuuLabel.text =[NSString stringWithFormat:@"%@",items.limitDateArray[onlyKeyArray[indexPath.row]]];
@@ -72,15 +71,17 @@
     return [self->publish_date compare:_item->publish_date];
 }
 
--(void)Sakuzyo_a{
+-(void)Sakuzyo_a:(NSNotificationCenter *)notificationCenter {
     NSData *classDataLoad = [[NSUserDefaults standardUserDefaults] dataForKey:@"ItemArray"];
     contentArray = [NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
     
-    [((Item *)contentArray[items_indexpath.row]).limitDateArray removeObjectForKey:onlyKeyArray[0]];
+    NSMutableArray *onlykeyArray_a = [[NSMutableArray alloc] init];
+    onlykeyArray_a = [[((Item *)contentArray[items_indexpath.row]).limitDateArray allKeys] mutableCopy];
+    [((Item *)contentArray[items_indexpath.row]).limitDateArray removeObjectForKey:onlykeyArray_a[0]];
     NSData *classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
     [[NSUserDefaults standardUserDefaults]setObject:classDataSave forKey:@"ItemArray"];
     [itemTableViewtwo reloadData];
-
+    
 }
 
 

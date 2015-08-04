@@ -27,7 +27,7 @@
     NSIndexPath *indexPath_kari;
     
     NSMutableArray *onlyKeyArray;
-    
+
     NSMutableArray *onlynameArray;
     
 }
