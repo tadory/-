@@ -12,7 +12,11 @@
 
 @interface Detail : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
-    int items;
+    Item *items;
+    NSIndexPath *items_indexpath;
+    
+    NSUInteger nameindex;
+    
     IBOutlet UITableView *itemTableViewtwo;
     NSMutableArray *contentArray;
     
@@ -24,12 +28,14 @@
     
     NSMutableArray *onlyKeyArray;
     
+    NSMutableArray *onlynameArray;
+    
 }
 
 -(NSComparisonResult) comparePublishDate:(Detail *)_item;
 
-@property (nonatomic)NSInteger *receivedItems;
-
+@property (nonatomic)Item *receivedItems;
+@property (nonatomic)NSIndexPath *receivedIndexPath;
 
 
 @end

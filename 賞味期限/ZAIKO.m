@@ -13,7 +13,8 @@
 
 
 @implementation ZAIKO {
-   int passItem;
+   Item *passItem;
+    NSIndexPath *passIndexPath;
 }
 
 
@@ -159,8 +160,9 @@
     
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     df.dateFormat = @"yyyy/MM/dd";
+    NSMutableArray *array =[[item.limitDateArray allKeys]mutableCopy];
     
-    cell.kigenLabel.text = [df stringFromDate:item.limitDate];
+    cell.kigenLabel.text = [df stringFromDate:array[0]];
     
     return cell;
     
@@ -173,6 +175,7 @@
             Detail *detail = segue.destinationViewController;
             //ここで遷移先ビューのクラスの変数receiveStringに値を渡している
             detail.receivedItems = passItem;
+            detail.receivedIndexPath = passIndexPath;
 
         }
    
@@ -182,8 +185,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //    IndexPath = [NSIndexPath indexPathForRow:indexPath inSection:0];
 
-    passItem = indexPath.row;
-    //IndexPath = indexPath;
+    passItem = contentArray[indexPath.row];
+    NSData *classDataLoad = [[NSUserDefaults standardUserDefaults]dataForKey:@"ItemArray"];
+    NSMutableArray *contentArray_a = [NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
+    
+    passIndexPath = indexPath;
     NSLog(@"%@", passItem);
     [self performSegueWithIdentifier:@"MainDetail" sender:self];
 

@@ -52,7 +52,7 @@
     NSMutableArray *onlykeyArray = [[((Item *)contentArray[index]).limitDateArray allKeys]mutableCopy];
     //ここでonlykeyArrayをソート
     
-    NSString *motomotostring = onlykeyArray[1];
+    NSString *motomotostring = ((Item *)contentArray[index]).limitDateArray[onlykeyArray[0]];
     NSInteger motomoto = [motomotostring integerValue];
     NSInteger numberOfItems = motomoto - 1;
     NSString *numberString = [NSString stringWithFormat:@"%ld",(long)numberOfItems];
@@ -60,7 +60,7 @@
         NSNotification *noti = [NSNotification notificationWithName:@"Sakuzyo_a" object:self];
         [[NSNotificationCenter defaultCenter] postNotification:noti];
     }
-    [((Item *)contentArray[index]).limitDateArray setValue:numberString forKey:onlykeyArray[1]];
+    [((Item *)contentArray[index]).limitDateArray setValue:numberString forKey:onlykeyArray[0]];
     
     NSData *classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
     [[NSUserDefaults standardUserDefaults]setObject:classDataSave forKey:@"ItemArray"];

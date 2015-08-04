@@ -16,12 +16,13 @@
     [super viewDidLoad];
     
     items = self.receivedItems;
+    items_indexpath = self.receivedIndexPath;
     
     itemTableViewtwo.delegate = self;
     itemTableViewtwo.dataSource = self;
     
     if (!contentArray) {
-        contentArray = [NSMutableArray new];
+        contentArray = [[NSMutableArray alloc]init];
         
     }
     
@@ -42,7 +43,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSData *classDataLoad = [[NSUserDefaults standardUserDefaults] dataForKey:@"ItemArray"];
     contentArray = [NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
-    return contentArray[items].limitDateArray.count;
+    return items.limitDateArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -52,7 +53,7 @@
     ItemCelltwo *cell = (ItemCelltwo *)[itemTableViewtwo dequeueReusableCellWithIdentifier:cellIdentifier];
     //NSLog(@"%lu",(unsigned long)items.limitDateArray.count);
     
-    onlyKeyArray = [[contentArray[items].limitDateArray allKeys] mutableCopy];
+    onlyKeyArray = [[items.limitDateArray allKeys] mutableCopy];
     for(int i;i<onlyKeyArray.count;i++){
         NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"yyyy年 M月 d日"];
@@ -61,7 +62,7 @@
     onlyKeyArray = [[onlyKeyArray sortedArrayUsingSelector:@selector(comparePublishDate:)]mutableCopy];
     
     cell.kigenLabel.text =[NSString stringWithFormat:@"%@",onlyKeyArray[indexPath.row]];
-    cell.kosuuLabel.text =[NSString stringWithFormat:@"%@",contentArray[items].limitDateArray[onlyKeyArray[indexPath.row]]];
+    cell.kosuuLabel.text =[NSString stringWithFormat:@"%@",items.limitDateArray[onlyKeyArray[indexPath.row]]];
     
     return cell;
 }
@@ -74,7 +75,8 @@
 -(void)Sakuzyo_a{
     NSData *classDataLoad = [[NSUserDefaults standardUserDefaults] dataForKey:@"ItemArray"];
     contentArray = [NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
-    [contentArray[items].limitDateArray removeObjectForKey:onlyKeyArray[1]];
+    
+    [((Item *)contentArray[items_indexpath.row]).limitDateArray removeObjectForKey:onlyKeyArray[0]];
     NSData *classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
     [[NSUserDefaults standardUserDefaults]setObject:classDataSave forKey:@"ItemArray"];
     [itemTableViewtwo reloadData];
