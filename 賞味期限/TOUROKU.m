@@ -66,8 +66,13 @@
     [self.view addSubview:buttona];
     buttona.hidden = YES;
     
-    item = [[Item alloc]initWithCoder:nil];
-    item.limitDateArray = [[NSMutableDictionary alloc]init];
+    if (!item) {
+        item = [[Item alloc] initWithCoder:nil];
+    }
+    
+    if (!item.limitDateArray) {
+        item.limitDateArray = [[NSMutableDictionary alloc] init];
+    }
 }
 
 #pragma mark - DatePicker
@@ -87,6 +92,14 @@
 
 -(void)buttona{
     
+    // ここでitemインスタンスが残っているので、一旦初期化
+    item = [[Item alloc] initWithCoder:nil];
+    item.limitDateArray = [[NSMutableDictionary alloc] init];
+
+    
+    // TODO: ここですでに前の値が残ってしまっている。
+    NSLog(@"TAPPED %@", item.limitDate);
+    
     item.name = texta.text;
     item.count = [textb.text integerValue];
     item.basyo = basyoArray[textc.selectedSegmentIndex];
@@ -95,9 +108,12 @@
     [formatter setDateFormat:@"yyyy年 M月 d日"];
     NSString *Date = [formatter stringFromDate:datepicker.date];
     NSString *Number = [NSString stringWithFormat:@"%ld",(long)item.count];
+    
+    
+    
     [item.limitDateArray setValue:Number forKey:Date];
     
-    NSLog(@"item to be added %@", item.debugDescription);
+
     
     // 取得
     NSData* classDataLoad = [[NSUserDefaults standardUserDefaults]  dataForKey:@"ItemArray"];
@@ -107,6 +123,8 @@
         itemArray = [[NSMutableArray alloc] init];
     }
     
+    
+    // TODO: 不要なものが辞書or配列内にあるのを防ぐ
     for(int a = 0; a < itemArray.count; a++) {
         NSString *name = ((Item *)itemArray[a]).name;
         NSString *searchstring = ((Item *)item).name;
@@ -114,7 +132,7 @@
         
         NSLog(@"NAME===%@,SEARCHSTRING==%@",name,searchstring);
         
-        if(range.length==searchstring.length && name.length==range.length) {
+        if(range.length == searchstring.length && name.length == range.length) {
             ((Item *)itemArray[a]).count = ((Item *)itemArray[a]).count+((Item *)item).count;
             NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
             [formatter setDateFormat:@"yyyy年 M月 d日"];
@@ -125,12 +143,15 @@
 //                ((Item *)itemArray[a]).limitDateArray[Date] = bb;
 //            }
             
+            // 在庫の数の管理
             NSString *motomotostring = [((Item *)itemArray[a]).limitDateArray valueForKey:Date];
             NSInteger motomoto = [motomotostring integerValue];
             NSInteger numberOfItems = motomoto + item.count;
             NSString *numberString = [NSString stringWithFormat:@"%ld",(long)numberOfItems];
             [((Item *)itemArray[a]).limitDateArray setValue:numberString forKey:Date];
-            
+            NSLog(@"かぶってます");
+        }else {
+            NSLog(@"かぶってないっす");
         }
     }
     
