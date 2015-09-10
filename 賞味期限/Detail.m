@@ -28,7 +28,7 @@
     
     NSData *classDataLoad = [[NSUserDefaults standardUserDefaults] dataForKey:@"ItemArray"];
     contentArray = [NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
-    NSLog(@"contentArray == %@", contentArray);
+    // NSLog(@"contentArray == %@", contentArray);
     
     NSMutableArray *onlykeyArray_a = [[NSMutableArray alloc] init];
     onlykeyArray_a = [[((Item *)contentArray[items_indexpath.row]).limitDateArray allKeys] mutableCopy];
@@ -58,7 +58,6 @@
     NSData *classDataLoad = [[NSUserDefaults standardUserDefaults] dataForKey:@"ItemArray"];
     contentArray = [NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
     return items.limitDateArray.count;
-    NSLog(@"");
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -66,13 +65,7 @@
     
     static NSString *cellIdentifier = @"ItemCelltwo";
     ItemCelltwo *cell = (ItemCelltwo *)[itemTableViewtwo dequeueReusableCellWithIdentifier:cellIdentifier];
-    //NSLog(@"%lu",(unsigned long)items.limitDateArray.count);
-    
-    //    for(int i;i<onlyKeyArray.count;i++){
-    //        NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    //        [formatter setDateFormat:@"yyyy年 M月 d日"];
-    //        onlyKeyArray[i] = [formatter dateFromString:onlyKeyArray[i]];
-    //    }
+
     onlyKeyArray = [[items.limitDateArray allKeys] mutableCopy];
     NSMutableArray *arrKeys = [[onlyKeyArray sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         NSDateFormatter *df = [[NSDateFormatter alloc] init];

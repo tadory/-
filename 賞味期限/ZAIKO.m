@@ -49,7 +49,7 @@
     NSNotificationCenter *noti = [NSNotificationCenter defaultCenter];
     [noti addObserver:self selector:@selector(sakuzyo) name:@"Sakuzyo" object:nil];
     
-    NSLog(@"%@",contentArray);
+    NSLog(@"viewDidLoad == %@",contentArray);
 }
 
 
@@ -193,6 +193,7 @@
         if ( [[segue identifier] isEqualToString:@"MainDetail"] ) {
             Detail *detail = segue.destinationViewController;
             //ここで遷移先ビューのクラスの変数receiveStringに値を渡している
+            NSLog(@"passItem == %@", passItem);
             detail.receivedItems = passItem;
             detail.receivedIndexPath = passIndexPath;
 
@@ -209,7 +210,6 @@
     NSMutableArray *contentArray_a = [NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
     
     passIndexPath = indexPath;
-    NSLog(@"%@", passItem);
     [self performSegueWithIdentifier:@"MainDetail" sender:self];
 
 }
