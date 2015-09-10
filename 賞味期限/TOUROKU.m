@@ -111,6 +111,9 @@
         NSString *name = ((Item *)itemArray[a]).name;
         NSString *searchstring = ((Item *)item).name;
         NSRange range =[name rangeOfString:searchstring options:NSCaseInsensitiveSearch];
+        
+        NSLog(@"NAME===%@,SEARCHSTRING==%@",name,searchstring);
+        
         if(range.length==searchstring.length && name.length==range.length) {
             ((Item *)itemArray[a]).count = ((Item *)itemArray[a]).count+((Item *)item).count;
             NSDateFormatter *formatter =[[NSDateFormatter alloc] init];
@@ -127,6 +130,7 @@
             NSInteger numberOfItems = motomoto + item.count;
             NSString *numberString = [NSString stringWithFormat:@"%ld",(long)numberOfItems];
             [((Item *)itemArray[a]).limitDateArray setValue:numberString forKey:Date];
+            
         }
     }
     
@@ -141,6 +145,18 @@
     
     UIAlertView *alert =[[UIAlertView alloc] initWithTitle:@"message" message:alertMessage delegate:nil cancelButtonTitle:@"完了" otherButtonTitles:nil];
     [alert show];
+    
+    //日付をソート
+    for(int b;b<=itemArray.count;i++){
+    NSMutableArray *onlyKeyArray = [[((Item *)itemArray[b]).limitDateArray allKeys] mutableCopy];
+    NSMutableArray *arrKeys = [[onlyKeyArray sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSDateFormatter *df = [[NSDateFormatter alloc] init];
+        [df setDateFormat:@"yyyy年 M月 d日"];
+        NSDate *d1 = [df dateFromString:(NSString*) obj1];
+        NSDate *d2 = [df dateFromString:(NSString*) obj2];
+        return [d1 compare: d2];
+    }]mutableCopy];
+    }
     
     // MARK: Save
     NSData *classDataSave = [NSKeyedArchiver archivedDataWithRootObject:itemArray];

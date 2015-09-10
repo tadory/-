@@ -30,8 +30,23 @@
     contentArray = [NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
     NSLog(@"contentArray == %@", contentArray);
     
+    NSMutableArray *onlykeyArray_a = [[NSMutableArray alloc] init];
+    onlykeyArray_a = [[((Item *)contentArray[items_indexpath.row]).limitDateArray allKeys] mutableCopy];
+
+    if(items.limitDateArray[onlykeyArray_a[0]]==0){
+//        NSData *classDataLoad = [[NSUserDefaults standardUserDefaults] dataForKey:@"ItemArray"];
+//        contentArray = [NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
+//        
+//        NSMutableArray *onlykeyArray_a = [[NSMutableArray alloc] init];
+//        onlykeyArray_a = [[((Item *)contentArray[items_indexpath.row]).limitDateArray allKeys] mutableCopy];
+//        [((Item *)contentArray[items_indexpath.row]).limitDateArray removeObjectForKey:onlykeyArray_a[0]];
+//        NSData *classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
+//        [[NSUserDefaults standardUserDefaults]setObject:classDataSave forKey:@"ItemArray"];
+    }
+    
     NSNotificationCenter *noti = [NSNotificationCenter defaultCenter];
     [noti addObserver:self selector:@selector(Sakuzyo_a:) name:@"Sakuzyo_a" object:nil];
+    [noti addObserver:self selector:@selector(StopReduce:) name:@"stopreduce" object:nil];
 }
 
 
@@ -43,6 +58,7 @@
     NSData *classDataLoad = [[NSUserDefaults standardUserDefaults] dataForKey:@"ItemArray"];
     contentArray = [NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
     return items.limitDateArray.count;
+    NSLog(@"");
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -52,16 +68,23 @@
     ItemCelltwo *cell = (ItemCelltwo *)[itemTableViewtwo dequeueReusableCellWithIdentifier:cellIdentifier];
     //NSLog(@"%lu",(unsigned long)items.limitDateArray.count);
     
-    onlyKeyArray = [[items.limitDateArray allKeys] mutableCopy];
     //    for(int i;i<onlyKeyArray.count;i++){
     //        NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
     //        [formatter setDateFormat:@"yyyy年 M月 d日"];
     //        onlyKeyArray[i] = [formatter dateFromString:onlyKeyArray[i]];
     //    }
+    onlyKeyArray = [[items.limitDateArray allKeys] mutableCopy];
+    NSMutableArray *arrKeys = [[onlyKeyArray sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSDateFormatter *df = [[NSDateFormatter alloc] init];
+        [df setDateFormat:@"yyyy年 M月 d日"];
+        NSDate *d1 = [df dateFromString:(NSString*) obj1];
+        NSDate *d2 = [df dateFromString:(NSString*) obj2];
+        return [d1 compare: d2];
+    }]mutableCopy];
     //onlyKeyArray = [[onlyKeyArray sortedArrayUsingSelector:@selector(comparePublishDate:)]mutableCopy];
     
-    cell.kigenLabel.text =[NSString stringWithFormat:@"%@",onlyKeyArray[indexPath.row]];
-    cell.kosuuLabel.text =[NSString stringWithFormat:@"%@",items.limitDateArray[onlyKeyArray[indexPath.row]]];
+    cell.kigenLabel.text =[NSString stringWithFormat:@"%@",arrKeys[indexPath.row]];
+    cell.kosuuLabel.text =[NSString stringWithFormat:@"%@",items.limitDateArray[arrKeys[indexPath.row]]];
     
     return cell;
 }
@@ -84,5 +107,10 @@
     
 }
 
+-(void)StopReduce:(NSNotificationCenter *)notificationCenter{
+    NSData *classDataLoad = [[NSUserDefaults standardUserDefaults]dataForKey:@"ItemArray"];
+    NSMutableArray *contentArray_b=[[NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad]mutableCopy];
+    
+}
 
 @end

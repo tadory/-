@@ -41,11 +41,15 @@
     }
     
     // デフォルトの通知センターを取得する
+    [self reloadCellContent];
+    
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(reloadCellContent) name:@"Tuchi" object:nil];
     
     NSNotificationCenter *noti = [NSNotificationCenter defaultCenter];
     [noti addObserver:self selector:@selector(sakuzyo) name:@"Sakuzyo" object:nil];
+    
+    NSLog(@"%@",contentArray);
 }
 
 
@@ -54,6 +58,8 @@
     NSData* classDataLoad = [[NSUserDefaults standardUserDefaults]  dataForKey:@"ItemArray"];
     contentArray = [NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
     [itemTableview reloadData];
+    
+    NSLog(@"result==%@",contentArray);
 }
 
 -(void)sakuzyo{
@@ -75,6 +81,7 @@
     NSLog(@"buttonIndex == %d", (int)buttonIndex);
     switch (buttonIndex) {
         case 0:
+        {
             ((Item *)contentArray[IndexPath]).count=1;
             classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
             [[NSUserDefaults standardUserDefaults]setObject:classDataSave forKey:@"ItemArray"];
@@ -83,7 +90,10 @@
             [ud synchronize];
             [itemTableview reloadData];
             NSLog(@"数は%ld",(long)((Item *)contentArray[IndexPath]).count);
+            NSNotification *noti_a=[NSNotification notificationWithName:@"stopreduce" object:self];
+            [[NSNotificationCenter defaultCenter] postNotification:noti_a];
             break;
+        }
         case 1:
             
             [contentArray removeObjectAtIndex:IndexPath];
@@ -158,11 +168,20 @@
     
     cell.tag = indexPath.row;
     
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    df.dateFormat = @"yyyy/MM/dd";
-    NSMutableArray *array =[[item.limitDateArray allKeys]mutableCopy];
+//    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+//    df.dateFormat = @"yyyy/MM/dd";
+//    NSMutableArray *array =[[item.limitDateArray allKeys]mutableCopy];
     
-    cell.kigenLabel.text = [df stringFromDate:array[0]];
+    NSMutableArray *onlyKeyArray = [[item.limitDateArray allKeys] mutableCopy];
+    NSMutableArray *arrKeys = [[onlyKeyArray sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSDateFormatter *df = [[NSDateFormatter alloc] init];
+        [df setDateFormat:@"yyyy年 M月 d日"];
+        NSDate *d1 = [df dateFromString:(NSString*) obj1];
+        NSDate *d2 = [df dateFromString:(NSString*) obj2];
+        return [d1 compare: d2];
+    }]mutableCopy];
+    
+    cell.kigenLabel.text = arrKeys[0];
     
     return cell;
     

@@ -49,10 +49,17 @@
     NSMutableArray *contentArray = [[NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad] mutableCopy];
     ((Item *)contentArray[index]).count=((Item *)contentArray[index]).count-1;
     
-    NSMutableArray *onlykeyArray = [[((Item *)contentArray[index]).limitDateArray allKeys]mutableCopy];
-    //ここでonlykeyArrayをソート
+       //ここでonlykeyArrayをソート
+    NSMutableArray *onlyKeyArray = [[((Item *)contentArray[index]).limitDateArray allKeys] mutableCopy];
+    NSMutableArray *arrKeys = [[onlyKeyArray sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSDateFormatter *df = [[NSDateFormatter alloc] init];
+        [df setDateFormat:@"yyyy年 M月 d日"];
+        NSDate *d1 = [df dateFromString:(NSString*) obj1];
+        NSDate *d2 = [df dateFromString:(NSString*) obj2];
+        return [d1 compare: d2];
+    }]mutableCopy];
     
-    NSString *motomotostring = ((Item *)contentArray[index]).limitDateArray[onlykeyArray[0]];
+    NSString *motomotostring = ((Item *)contentArray[index]).limitDateArray[arrKeys[0]];
     NSInteger motomoto = [motomotostring integerValue];
     NSInteger numberOfItems = motomoto - 1;
     NSString *numberString = [NSString stringWithFormat:@"%ld",(long)numberOfItems];
@@ -60,7 +67,7 @@
         NSNotification *noti = [NSNotification notificationWithName:@"Sakuzyo_a" object:self];
         [[NSNotificationCenter defaultCenter] postNotification:noti];
     }
-    [((Item *)contentArray[index]).limitDateArray setValue:numberString forKey:onlykeyArray[0]];
+    [((Item *)contentArray[index]).limitDateArray setValue:numberString forKey:arrKeys[0]];
     
     NSData *classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
     [[NSUserDefaults standardUserDefaults]setObject:classDataSave forKey:@"ItemArray"];
