@@ -64,8 +64,8 @@
 
 -(void)sakuzyo{
     sakuzyo=YES;
-    NSString *message = [NSString stringWithFormat:@"%@を在庫から消去しますか？",((Item *)contentArray[IndexPath]).name];
-    UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"確認" message:message delegate:self cancelButtonTitle:@"いいえ" otherButtonTitles:@"はい", nil];
+    NSString *message = [NSString stringWithFormat:@"%@を在庫から消去します",((Item *)contentArray[IndexPath]).name];
+    UIAlertView *alert =[[UIAlertView alloc]initWithTitle:@"確認" message:message delegate:self cancelButtonTitle:@"はい" otherButtonTitles:nil, nil];
     alert.cancelButtonIndex = 1;
     [alert show];
     
@@ -82,6 +82,22 @@
     switch (buttonIndex) {
         case 0:
         {
+            [contentArray removeObjectAtIndex:IndexPath];
+            classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
+            [[NSUserDefaults standardUserDefaults]setObject:classDataSave forKey:@"ItemArray"];
+            [ud synchronize];
+            
+            [itemTableview reloadData];
+            /*
+             [itemTableview deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+             [itemTableview endUpdates];
+             */
+            sakuzyo=NO;
+            break;
+            
+        }
+        case 1:
+            
             ((Item *)contentArray[IndexPath]).count=1;
             classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
             [[NSUserDefaults standardUserDefaults]setObject:classDataSave forKey:@"ItemArray"];
@@ -92,21 +108,6 @@
             NSLog(@"数は%ld",(long)((Item *)contentArray[IndexPath]).count);
             NSNotification *noti_a=[NSNotification notificationWithName:@"stopreduce" object:self];
             [[NSNotificationCenter defaultCenter] postNotification:noti_a];
-            break;
-        }
-        case 1:
-            
-            [contentArray removeObjectAtIndex:IndexPath];
-            classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
-            [[NSUserDefaults standardUserDefaults]setObject:classDataSave forKey:@"ItemArray"];
-            [ud synchronize];
-            
-            [itemTableview reloadData];
-            /*
-            [itemTableview deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [itemTableview endUpdates];
-            */
-            sakuzyo=NO;
             break;
     }
 }

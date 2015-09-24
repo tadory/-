@@ -8,6 +8,7 @@
 
 #import "ItemCell.h"
 #import "Item.h"
+#import "Detail.h"
 
 
 @implementation ItemCell
