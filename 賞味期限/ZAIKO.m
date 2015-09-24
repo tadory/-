@@ -229,6 +229,7 @@
         }
         
     }
+    //[itemTableview reloadData];
     
     cell.kigenLabel.text = arrKeys[0];
     

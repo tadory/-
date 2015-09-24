@@ -101,7 +101,7 @@
     
     NSMutableArray *onlykeyArray_a = [[NSMutableArray alloc] init];
     onlykeyArray_a = [[((Item *)contentArray[items_indexpath.row]).limitDateArray allKeys] mutableCopy];
-    [((Item *)contentArray[items_indexpath.row]).limitDateArray removeObjectForKey:onlykeyArray_a[0]];
+//    [((Item *)contentArray[items_indexpath.row]).limitDateArray removeObjectForKey:onlykeyArray_a[0]];
     NSData *classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
     [[NSUserDefaults standardUserDefaults]setObject:classDataSave forKey:@"ItemArray"];
     [itemTableViewtwo reloadData];

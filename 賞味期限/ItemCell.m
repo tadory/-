@@ -68,8 +68,9 @@
         NSNotification *noti = [NSNotification notificationWithName:@"Sakuzyo_a" object:self];
         [[NSNotificationCenter defaultCenter] postNotification:noti];
         [((Item *)contentArray[index]).limitDateArray removeObjectForKey:arrKeys[0]];
-    }
+    }else {
     [((Item *)contentArray[index]).limitDateArray setValue:numberString forKey:arrKeys[0]];
+    }
     
     NSData *classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
     [[NSUserDefaults standardUserDefaults]setObject:classDataSave forKey:@"ItemArray"];
