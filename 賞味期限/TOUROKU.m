@@ -168,7 +168,7 @@
     [alert show];
     
     //日付をソート
-    for(int b;b<=itemArray.count;i++){
+    for(int b;b<=itemArray.count;b++){
     NSMutableArray *onlyKeyArray = [[((Item *)itemArray[b]).limitDateArray allKeys] mutableCopy];
     NSMutableArray *arrKeys = [[onlyKeyArray sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         NSDateFormatter *df = [[NSDateFormatter alloc] init];

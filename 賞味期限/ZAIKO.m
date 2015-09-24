@@ -139,7 +139,7 @@
 //    IndexPath = [NSIndexPath indexPathForRow:indexPath inSection:0];
     
     static NSString *cellIdentifier = @"ItemCell";
-    ItemCell *cell = (ItemCell *)[itemTableview dequeueReusableCellWithIdentifier:cellIdentifier];
+    cell = (ItemCell *)[itemTableview dequeueReusableCellWithIdentifier:cellIdentifier];
     
     UIButton *upButton = (UIButton *)[cell viewWithTag:100];
     UIButton *downButton = (UIButton *)[cell viewWithTag:200];
@@ -180,6 +180,54 @@
         NSDate *d2 = [df dateFromString:(NSString*) obj2];
         return [d1 compare: d2];
     }]mutableCopy];
+    
+    for(int i;i<=contentArray.count-1;i++){
+//        NSDate *today = [[NSDate alloc]init];
+//        today = [NSDate date];
+        NSData *classDataLoad = [[NSUserDefaults standardUserDefaults]dataForKey:@"ItemArray"];
+        NSMutableArray *content_aArray = [NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
+        NSMutableArray *onlyKeyArray = [[NSMutableArray alloc]init];
+        onlyKeyArray = [[((Item *)content_aArray[i]).limitDateArray allKeys]mutableCopy];
+//        NSDateFormatter *toint = [[NSDateFormatter alloc]init];
+//        [toint setDateFormat:@"yyyyMd"];
+//        NSDate *Date2 = [[NSDate alloc]init];
+//        NSDateFormatter *df = [[NSDateFormatter alloc]init];
+//        
+//        NSString *Date1 = [toint stringFromDate:today];
+//        NSInteger date1 = [Date1 intValue];
+//        NSInteger date2 = [onlyKeyArray[0] intValue];
+//        
+//        int interval =date2 -date1;
+        
+        NSDate *date1 = [NSDate date];
+        NSDateFormatter *toint = [[NSDateFormatter alloc]init];
+        [toint setDateFormat:@"yyyy年M月d日"];
+        NSDate *date2 = [toint dateFromString:onlyKeyArray[0]];
+        float interval = [date1 timeIntervalSinceDate:date2];
+        
+        if([date1 isEqualToDate:date2]==YES){
+            cell.kigenLabel.backgroundColor = [UIColor redColor];
+        }else if([date1 earlierDate:date2]==date2){
+            cell.kigenLabel.backgroundColor = [UIColor blackColor];
+            cell.kigenLabel.textColor = [UIColor whiteColor];
+        }else{
+            if(interval<=3){
+                cell.kigenLabel.backgroundColor = [UIColor redColor];
+            }else{
+                cell.kigenLabel.backgroundColor = [UIColor whiteColor];
+            }
+        }
+        
+        if(interval<=0){
+            cell.kigenLabel.backgroundColor = [UIColor blackColor];
+            cell.kigenLabel.textColor = [UIColor whiteColor];
+        }else if(interval>0&&interval>3000){
+            cell.kigenLabel.backgroundColor = [UIColor redColor];
+        }else{
+            cell.kigenLabel.backgroundColor = [UIColor whiteColor];
+        }
+        
+    }
     
     cell.kigenLabel.text = arrKeys[0];
     

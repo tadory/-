@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ItemCell.h"
 //@property (nonatomic,weak) IBOutlet UISearchBar *search;
 
 @interface ZAIKO : UIViewController<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate,UIAlertViewDelegate, UISearchDisplayDelegate>
 {
+    ItemCell *cell;
+    
     IBOutlet UITableView *itemTableview;
     IBOutlet UIBarButtonItem *sakuzyoButton;
     IBOutlet UISearchBar *zaikoSearchBar;

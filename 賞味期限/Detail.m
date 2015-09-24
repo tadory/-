@@ -33,7 +33,7 @@
     NSMutableArray *onlykeyArray_a = [[NSMutableArray alloc] init];
     onlykeyArray_a = [[((Item *)contentArray[items_indexpath.row]).limitDateArray allKeys] mutableCopy];
 
-    if(items.limitDateArray[onlykeyArray_a[0]]==0){
+//    if(items.limitDateArray[onlykeyArray_a[0]]<=0){
 //        NSData *classDataLoad = [[NSUserDefaults standardUserDefaults] dataForKey:@"ItemArray"];
 //        contentArray = [NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
 //        
@@ -42,10 +42,18 @@
 //        [((Item *)contentArray[items_indexpath.row]).limitDateArray removeObjectForKey:onlykeyArray_a[0]];
 //        NSData *classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
 //        [[NSUserDefaults standardUserDefaults]setObject:classDataSave forKey:@"ItemArray"];
-    }
+//        [itemTableViewtwo reloadData];
+//    }
     
     NSNotificationCenter *noti = [NSNotificationCenter defaultCenter];
-    [noti addObserver:self selector:@selector(Sakuzyo_a:) name:@"Sakuzyo_a" object:nil];
+    [noti addObserverForName:@"Sakuzyo_a"
+                      object:nil
+                       queue:nil
+                  usingBlock:^(NSNotification *note){
+                      [self Sakuzyo_a];
+                  }];
+    
+//    [noti addObserver:self selector:@selector(Sakuzyo_a:) name:@"Sakuzyo_a" object:nil];
     [noti addObserver:self selector:@selector(StopReduce:) name:@"stopreduce" object:nil];
 }
 
@@ -87,7 +95,7 @@
     return [self->publish_date compare:_item->publish_date];
 }
 
--(void)Sakuzyo_a:(NSNotificationCenter *)notificationCenter {
+-(void)Sakuzyo_a{
     NSData *classDataLoad = [[NSUserDefaults standardUserDefaults] dataForKey:@"ItemArray"];
     contentArray = [NSKeyedUnarchiver unarchiveObjectWithData:classDataLoad];
     
