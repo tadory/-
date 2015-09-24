@@ -42,6 +42,7 @@
      */
 }
 - (IBAction)downButtonPushed:(UIButton *)buttonInfo {
+    
     NSLog(@"down buttonInfo ==  %@", buttonInfo);
     
     int index = buttonInfo.superview.superview.tag;
@@ -64,10 +65,14 @@
     NSInteger motomoto = [motomotostring integerValue];
     NSInteger numberOfItems = motomoto - 1;
     NSString *numberString = [NSString stringWithFormat:@"%ld",(long)numberOfItems];
+    
+    
     if (numberOfItems <= 0) {
         NSNotification *noti = [NSNotification notificationWithName:@"Sakuzyo_a" object:self];
         [[NSNotificationCenter defaultCenter] postNotification:noti];
         [((Item *)contentArray[index]).limitDateArray removeObjectForKey:arrKeys[0]];
+        NSData *classDataSave = [NSKeyedArchiver archivedDataWithRootObject:contentArray];
+        [[NSUserDefaults standardUserDefaults]setObject:classDataSave forKey:@"ItemArray"];
     }else {
     [((Item *)contentArray[index]).limitDateArray setValue:numberString forKey:arrKeys[0]];
     }

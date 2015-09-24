@@ -21,7 +21,7 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     zyouge =NO;
-    
+    ichika = NO;
     douka=NO;
     sakuzyo=NO;
     
@@ -49,6 +49,9 @@
     NSNotificationCenter *noti = [NSNotificationCenter defaultCenter];
     [noti addObserver:self selector:@selector(sakuzyo) name:@"Sakuzyo" object:nil];
     
+    NSNotificationCenter *noti_ = [NSNotificationCenter defaultCenter];
+    [noti addObserver:self selector:@selector(sakuzyo_a) name:@"Sakuzyo_a" object:nil];
+    
     NSLog(@"viewDidLoad == %@",contentArray);
 }
 
@@ -69,6 +72,10 @@
     alert.cancelButtonIndex = 1;
     [alert show];
     
+}
+
+-(void)sakuzyo_a{
+    ichika = YES;
 }
 
 
@@ -219,19 +226,22 @@
             }
         }
         
-        if(interval<=0){
-            cell.kigenLabel.backgroundColor = [UIColor blackColor];
-            cell.kigenLabel.textColor = [UIColor whiteColor];
-        }else if(interval>0&&interval>3000){
-            cell.kigenLabel.backgroundColor = [UIColor redColor];
-        }else{
-            cell.kigenLabel.backgroundColor = [UIColor whiteColor];
-        }
+//        if(interval<=0){
+//            cell.kigenLabel.backgroundColor = [UIColor blackColor];
+//            cell.kigenLabel.textColor = [UIColor whiteColor];
+//        }else if(interval>0&&interval>3000){
+//            cell.kigenLabel.backgroundColor = [UIColor redColor];
+//        }else{
+//            cell.kigenLabel.backgroundColor = [UIColor whiteColor];
+//        }
         
     }
     //[itemTableview reloadData];
-    
+    if(ichika==YES){
+        ichika=NO;
+    }else{
     cell.kigenLabel.text = arrKeys[0];
+    }
     
     return cell;
     

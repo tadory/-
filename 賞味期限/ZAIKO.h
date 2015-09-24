@@ -25,6 +25,7 @@
     BOOL douka;
     BOOL sakuzyo;
     BOOL zyouge;
+    BOOL ichika;
 }
 -(IBAction)sakuzyobutton;
 -(IBAction)hensyuubutton;

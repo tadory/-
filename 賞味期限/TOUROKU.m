@@ -66,6 +66,12 @@
     [self.view addSubview:buttona];
     buttona.hidden = YES;
     
+    
+//    UILabel *label = [[UILabel alloc]init];
+//    label.frame =CGRectMake(103, 462, 115, 49);
+//    label.backgroundColor  = [
+    
+    
     if (!item) {
         item = [[Item alloc] initWithCoder:nil];
     }
@@ -82,7 +88,7 @@
 }
 
 - (void)shouldShowButtonA {
-    if (kigen_i && texta_i && textb_i && textc.selectedSegmentIndex>=0) {
+    if (texta_i && textb_i && textc.selectedSegmentIndex>=0) {
         buttona.hidden = NO;
     }
 }
